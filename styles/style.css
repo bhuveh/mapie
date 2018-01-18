@@ -1,0 +1,153 @@
+/** Variables. **/
+/** Styling starts here. **/
+body {
+  background-color: #ffffff;
+  color: #5c5c5c;
+  font-family: 'Ubuntu', sans-serif; }
+
+.full-height {
+  height: 100vh; }
+
+.lr-block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #fa4045;
+  padding: 50px;
+  text-align: center; }
+  @media (max-width: 560px) {
+    .lr-block {
+      padding: 35px; } }
+  .lr-block .title {
+    display: block;
+    width: auto;
+    padding: 10px 20px 0px 20px;
+    color: #ffffff;
+    font-size: 50px;
+    line-height: 54px;
+    cursor: default; }
+    @media (max-width: 560px) {
+      .lr-block .title {
+        font-size: 40px;
+        line-height: 42px; } }
+  .lr-block .sub-title {
+    display: inline-block;
+    width: auto;
+    padding: 0px 20px 10px 20px;
+    border-bottom: solid 4px #ffffff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: default; }
+    @media (max-width: 560px) {
+      .lr-block .sub-title {
+        font-size: 14px;
+        padding-bottom: 5px; } }
+  .lr-block form {
+    margin: 0 auto;
+    margin-top: 30px;
+    max-width: 300px; }
+    @media (max-width: 560px) {
+      .lr-block form {
+        margin-top: 20px; } }
+    .lr-block form .form-link {
+      color: #e4e4e4;
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 0.5rem; }
+      .lr-block form .form-link a {
+        text-decoration: none;
+        color: #e4e4e4; }
+        .lr-block form .form-link a:hover {
+          border-bottom: solid 2px #ffffff;
+          text-decoration: none;
+          color: #ffffff; }
+    .lr-block form .form-button {
+      margin-bottom: 0.75rem; }
+      .lr-block form .form-button .btn {
+        width: 150px;
+        background-color: #e4e4e4;
+        color: #5c5c5c;
+        border-color: rgba(0, 0, 0, 0.15);
+        font-weight: 700; }
+        .lr-block form .form-button .btn:hover {
+          background-color: #ffffff;
+          color: #fa4045;
+          border-color: #fa4045; }
+      .lr-block form .form-button .btn.disabled, .lr-block form .form-button .btn:disabled {
+        opacity: .65; }
+        .lr-block form .form-button .btn.disabled:hover, .lr-block form .form-button .btn:disabled:hover {
+          background-color: #e4e4e4;
+          color: #5c5c5c;
+          border-color: rgba(0, 0, 0, 0.15); }
+    .lr-block form .form-check {
+      margin-bottom: 1rem;
+      text-align: left;
+      padding: 0 0.5rem; }
+      .lr-block form .form-check .form-check-input {
+        margin-top: 0.45rem;
+        margin-left: 0; }
+      .lr-block form .form-check label {
+        color: #ffffff;
+        text-align: left; }
+    .lr-block form textarea {
+      resize: none; }
+    .lr-block form small {
+      color: #e4e4e4;
+      font-size: 12px; }
+
+.cpage {
+  background-color: #fa4045;
+  height: 100%;
+  width: 100%; }
+  .cpage .page-title {
+    color: #ffffff;
+    padding-top: 4rem;
+    padding-bottom: 1rem; }
+    .cpage .page-title .btn {
+      width: auto;
+      background-color: #e4e4e4;
+      color: #5c5c5c;
+      border-color: rgba(0, 0, 0, 0.15);
+      font-weight: 700; }
+      .cpage .page-title .btn:hover {
+        background-color: #ffffff;
+        color: #fa4045;
+        border-color: #fa4045; }
+    .cpage .page-title .btn.disabled, .cpage .page-title .btn:disabled {
+      opacity: .65; }
+      .cpage .page-title .btn.disabled:hover, .cpage .page-title .btn:disabled:hover {
+        background-color: #e4e4e4;
+        color: #5c5c5c;
+        border-color: rgba(0, 0, 0, 0.15); }
+  .cpage .filter-form-wrapper {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 1rem; }
+  .cpage .ctable-wrapper {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px; }
+    .cpage .ctable-wrapper .table-title {
+      color: #fa4045;
+      margin-top: 1rem;
+      margin-bottom: 1rem; }
+    .cpage .ctable-wrapper .ctable {
+      font-size: 12px;
+      min-width: 510px;
+      color: #5c5c5c; }
+      .cpage .ctable-wrapper .ctable thead {
+        cursor: default; }
+      .cpage .ctable-wrapper .ctable.table-hover tbody tr:hover {
+        background-color: rgba(250, 64, 69, 0.1);
+        cursor: default; }
+      .cpage .ctable-wrapper .ctable tbody tr a {
+        color: #5c5c5c; }
+        .cpage .ctable-wrapper .ctable tbody tr a:hover {
+          color: #fa4045;
+          font-weight: 700; }
+
+/*# sourceMappingURL=style.css.map */

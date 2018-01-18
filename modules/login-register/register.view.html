@@ -1,0 +1,65 @@
+<!-- Login Block -->
+<div class="lr-block container-fluid">
+  <div class="title">MAPIE</div>
+  <div class="sub-title">Registration</div>
+  
+  <form name="regform" ng-submit="register()" novalidate>
+    <div class="form-group form-row">
+      <div class="col-sm">
+        <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="regUser.firstname">
+      </div>
+      <div class="col-sm">
+        <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="regUser.lastname">
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Email*" ng-model="regUser.email" required>
+      <small ng-show="regform.email.$touched && regform.email.$error.required">Email ID is required!</small>
+      <small ng-show="regform.email.$dirty && regform.email.$error.email">This is not a valid email.</small>
+    </div>
+    <div class="form-group">
+      <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" name="phone" id="phone" placeholder="Phone Number" ng-model="regUser.phone">
+      <small ng-show="regform.phone.$dirty && regform.phone.$error.minlength">This is not a valid phone number.</small>
+      <small ng-show="regform.phone.$dirty && regform.phone.$error.maxlength">This is not a valid phone number.</small>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" id="address" placeholder="Address" ng-model="regUser.address" rows="3"></textarea>
+    </div>
+    <div class="form-group form-row">
+      <div class="col-sm">
+        <input type="text" class="form-control" id="city" placeholder="City" ng-model="regUser.city">
+      </div>
+      <div class="col-sm">
+        <input type="number" ng-minlength="6" ng-maxlength="6" class="form-control" id="pincode" name="pincode" placeholder="Pincode" ng-model="regUser.pincode">
+        <small ng-show="regform.pincode.$dirty && regform.pincode.$error.minlength">This is not a valid pincode.</small>
+        <small ng-show="regform.pincode.$dirty && regform.pincode.$error.maxlength">This is not a valid pincode.</small>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col-sm">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password*" ng-model="regUser.password" required confirm-password="{{regUser.cpassword}}">
+        <small ng-show="regform.password.$touched && regform.password.$error.required">Password is required!</small>
+        <small ng-show="regform.password.$dirty && regform.password.$error.confirmPassword">Password mismatch!</small>
+      </div>
+      <div class="col-sm">
+        <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password*" ng-model="regUser.cpassword" name="cpassword" required confirm-password="{{regUser.cpassword}}">
+        <small ng-show="regform.cpassword.$touched && regform.cpassword.$error.required">Confirm password is required!</small>
+        <small ng-show="regform.cpassword.$dirty && regform.cpassword.$error.confirmPassword">Password mismatch!</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="coID" id="coID" placeholder="Coordinator ID" ng-model="regUser.coID">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="rschCheck" ng-model="regUser.usertype">
+      <label class="form-check-label" for="rschCheck">Register as Researcher</label>
+    </div>
+    <div class="form-group form-button">
+      <button type="submit" ng-disabled="regform.$invalid || dataLoading" class="btn btn-primary">Register</button>
+      <img ng-if="dataLoading" src="./modules/login-register/ajax-loader.gif" />
+    </div>
+    <div class="form-group form-link" ng-show="msg">
+        {{ msg }}
+    </div>
+  </form>
+</div>

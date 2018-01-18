@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MAPIE</title>
+    
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+
+    <!--CSS Libraries-->
+    <link rel="stylesheet" type="text/css"  href="./libraries/bootstrap-4.0.0-beta-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./libraries/angular-slider-6.4.0/rzslider.min.css">
+    
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  </head>
+
+  <body ng-app='app'>
+    <!--View-->
+    <div ng-view class='full-height'></div>
+    
+    <!--Bootstrap-->
+    <script type='text/javascript' src='./libraries/jquery/jquery-3.2.1.min.js'></script>
+    <script type='text/javascript' src='./libraries/popper.js-1.12.5/popper.min.js'></script>
+    <script type='text/javascript' src='./libraries/bootstrap-4.0.0-beta-dist/js/bootstrap.min.js'></script>
+    
+    <!--AngularJS-->
+    <script type='text/javascript' src='./libraries/angular-1.6.5/angular.min.js'></script>
+    <script type='text/javascript' src='./libraries/angular-1.6.5/angular-route.min.js'></script>
+    <script type='text/javascript' src='./libraries/angular-1.6.5/angular-cookies.min.js'></script>
+    
+    
+    <!--D3-->
+    <script type='text/javascript' src='./libraries/d3/d3.min.js'></script>
+    
+    <!--Slider-->
+    <script type='text/javascript' src='./libraries/angular-slider-6.4.0/rzslider.min.js'></script>
+    
+    <!--Custom-->
+    <!--Main App Module-->
+    <script type='text/javascript' src='./script/app.js'></script>
+    <!--script type='text/javascript' src='./script/d3-scale-radial.js'></script-->
+    <!--script type='text/javascript' src='./script/all-data-service.js'></script-->
+    
+    <!--LoginRegister Module-->
+    <script type='text/javascript' src='./modules/login-register/loginRegister.module.js'></script>
+    <!--Coordinators Module-->
+    <script type='text/javascript' src='./modules/coordinators/coordinators.module.js'></script>
+    <!--Home Module-->
+    <script type='text/javascript' src='./modules/home/home.module.js'></script>
+
+  </body>
+</html>

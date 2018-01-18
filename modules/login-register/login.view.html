@@ -1,0 +1,27 @@
+<!-- Login Block -->
+<div class="lr-block container-fluid">
+  <div class="title">MAPIE</div>
+  <div class="sub-title">Monitoring Ambient Parameters for Indoor Environments</div>
+  
+  <form name="logform" ng-submit="login()" novalidate>
+    <div class="form-group form-link" ng-show="error">
+      {{error}}
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" id="username" name="username" placeholder="Email@example.com" ng-model="user.email" required>
+      <small ng-show="logform.username.$touched && logform.username.$error.required">Email ID is required!</small>
+      <small ng-show="logform.username.$dirty && logform.username.$error.email">This is not a valid email.</small>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password" required>
+      <small ng-show="logform.password.$touched && logform.password.$error.required">Password is required!</small>
+    </div>
+    <div class="form-group form-button">
+      <button type="submit" ng-disabled="logform.$invalid || dataLoading" class="btn btn-primary">Log In</button>
+      <img ng-if="dataLoading" src="./modules/login-register/ajax-loader.gif" />
+    </div>
+    <div class="form-group form-link">
+      Or <a ng-href="#!/register">Register Now!</a>
+    </div>
+  </form>
+</div>

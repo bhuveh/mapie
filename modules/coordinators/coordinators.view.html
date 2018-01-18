@@ -1,0 +1,50 @@
+<div class="cpage">
+  <div class="container page-title">
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <h4>Manage Coordinators</h4>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-primary">Add New</a>
+      </div>
+    </div>
+  </div>
+  <div class="container filter-form-wrapper">
+    <form class="form">
+      <input type="text" class="form-control" id="filterBy" placeholder="Filter..." ng-model="filterBy">
+    </form>
+  </div>
+  <div class="ctable-wrapper container table-responsive">
+    <h4 class="table-title">Filtered Results</h4>
+    <table class="ctable table table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Site Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">Pincode</th>
+          <th scope="col">LE By</th>
+          <th scope="col">LE On</th>
+          <th scope="col">View</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="coordinator in coordinators | filter: filterBy">
+          <th scope="row">{{coordinator.cid}}</th>
+          <td>{{coordinator.sname}}</td>
+          <td>{{coordinator.address}}</td>
+          <td>{{coordinator.city}}</td>
+          <td>{{coordinator.pincode}}</td>
+          <td>{{coordinator.lastEditBy}}</td>
+          <td>{{coordinator.lastEditOn}}</td>
+          <td><a>View</a></td>
+          <td><a>Edit</a></td>
+          <td><a>Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

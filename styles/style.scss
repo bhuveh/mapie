@@ -1,0 +1,215 @@
+/** Variables. **/
+
+// Colors
+$red: #fa4045;                  // Red
+$tred: rgba(250, 64, 69, 0.1);  //Transparent Red
+$wht: #ffffff;                  // White
+$blk: #5c5c5c;                  // Black
+$lgry: #e4e4e4;                 // Light Grey
+$gry: #d2d2d2;                  // Grey
+$dgry: #b3b3b3;                 // Dark Grey
+
+// Screen sizes
+$mid: 560px;
+
+
+/** Styling starts here. **/
+
+// Body
+body {
+  background-color: $wht;
+  color: $blk;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+// Full height divs
+.full-height {
+  height: 100vh;
+}
+
+// Login & registration blocks
+.lr-block {
+  // Centered div & text
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  // Red
+  background-color: $red;
+  // Padding
+  padding: 50px;  
+  @media(max-width: $mid){
+    padding: 35px;
+  }
+  // Text
+  text-align: center;
+  .title {
+    display: block;
+    width: auto;
+    padding: 10px 20px 0px 20px;
+    color: $wht;
+    font-size: 50px;
+    line-height: 54px;
+    @media(max-width: $mid){
+      font-size: 40px;
+      line-height: 42px;
+    }
+    cursor: default;
+  }
+  .sub-title {
+    display: inline-block;
+    width: auto;
+    padding: 0px 20px 10px 20px;
+    border-bottom: solid 4px $wht;
+    color: $wht;
+    font-size: 16px;    
+    @media(max-width: $mid){
+      font-size: 14px;
+      padding-bottom: 5px;
+    }
+    cursor: default;
+  }
+  // Forms
+  form {
+    margin: 0 auto;
+    margin-top: 30px;
+    max-width: 300px;    
+    @media(max-width: $mid){
+      margin-top: 20px;
+    }
+    .form-link {
+      color: $lgry;
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 0.5rem;
+      a {
+        text-decoration: none;
+        color: $lgry;
+        &:hover {
+          border-bottom: solid 2px $wht;
+          text-decoration: none;
+          color: $wht;
+        }
+      }
+    } 
+    .form-button {
+      margin-bottom: 0.75rem;
+      .btn {
+        width: 150px;
+        background-color: $lgry;
+        color: $blk;
+        border-color: rgba(0, 0, 0, 0.15);
+        font-weight: 700;
+        &:hover {
+          background-color: $wht;
+          color: $red;
+          border-color: $red;
+        }
+      }
+      .btn.disabled, .btn:disabled {
+        opacity: .65;
+        &:hover {
+          background-color: $lgry;
+          color: $blk;
+          border-color: rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+    .form-check {
+      margin-bottom: 1rem;
+      text-align: left;
+      padding: 0 0.5rem;
+      .form-check-input {
+        margin-top: 0.45rem;
+        margin-left: 0;
+      }
+      label {
+        color: $wht;
+        text-align: left;
+      }
+    }
+    textarea {
+      resize: none;
+    }
+    small {
+      color: $lgry;
+      font-size: 12px;
+    }
+  }
+}
+
+// Coordinators page
+.cpage {
+  background-color: $red;
+  height: 100%;
+  width: 100%;
+  
+  .page-title {
+    color: $wht;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    .btn {
+      width: auto;
+      background-color: $lgry;
+      color: $blk;
+      border-color: rgba(0, 0, 0, 0.15);
+      font-weight: 700;
+      &:hover {
+        background-color: $wht;
+        color: $red;
+        border-color: $red;
+      }
+    }
+    .btn.disabled, .btn:disabled {
+      opacity: .65;
+      &:hover {
+        background-color: $lgry;
+        color: $blk;
+        border-color: rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+  
+  .filter-form-wrapper {
+    background-color: $wht;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  .ctable-wrapper {
+    background-color: $wht;
+    padding: 20px;
+    border-radius: 5px;
+    
+    .table-title {
+      color: $red;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .ctable {
+      font-size: 12px;
+      min-width: 510px;
+      color: $blk;
+      thead {
+        cursor: default;
+      }
+      &.table-hover tbody tr:hover {
+        background-color: $tred;
+        cursor: default;
+      }
+      tbody {
+        tr {
+          a {
+            color: $blk; 
+            &:hover {
+              color: $red;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
