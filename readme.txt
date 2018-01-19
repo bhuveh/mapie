@@ -1,7 +1,7 @@
 D:
-cd gitrepos\modules\styles
+cd gitrepos\Mapie\styles
 sass --watch style.scss:style.css
 
 D:
-cd gitrepos\modules
+cd gitrepos\Mapie
 python -m http.server 8080
