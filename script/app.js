@@ -23,6 +23,10 @@
           controller: 'CoordinatorsController',
           templateUrl: './modules/coordinators/coordinators.view.html'
         })
+        .when('/edit-coordinator/:cid', {
+          controller: 'EditCoordinatorController',
+          templateUrl: './modules/coordinators/edit-coordinator.view.html'
+        })
         .when('/home', {
           controller: 'HomeController',
           templateUrl: './modules/home/home.view.html'

@@ -18,7 +18,7 @@
             userService.GetByEmail(email)
               .then(function (user) {
                 if (user !== null && user.password === password) {
-                  response = { id: user.id, usertype: user.usertype, success: true };
+                  response = { id: user.id, usertype: user.usertype, firstname: user.firstname, success: true };
                 } else {
                   response = { sucess: false, message: 'Email or password is incorrect!' };
                 }
@@ -33,13 +33,14 @@
           //    });
         };
 
-        service.SetCredentials = function (id, usertype, password) {
-          var authdata = base64.encode(id + ':' + usertype + ':' + password);
+        service.SetCredentials = function (id, usertype, firstname, password) {
+          var authdata = base64.encode(id + ':' + usertype + ':' + firstname + ':' + password);
           
           $rootScope.globals = {
             currentUser: {
               id: id,
               type: usertype,
+              name: firstname,
               authdata: authdata
             }
           };
@@ -302,7 +303,7 @@
         authenticationService.Login($scope.user.email, $scope.user.password, function(response) {
           if(response.success) {
             console.log("You've logged in!");
-            authenticationService.SetCredentials(response.id, response.usertype, $scope.user.password);
+            authenticationService.SetCredentials(response.id, response.usertype, response.firstname, $scope.user.password);
             if(response.usertype) {
               console.log("Redirecting to coordinators.");
               $location.path('/coordinators');
@@ -331,6 +332,8 @@
       
       $scope.register = function(){
         $scope.dataLoading = true;
+        $scope.regUser.usertype = true;
+        
         if ($scope.regUser.usertype) {
           $scope.regUser.usertype = 1;
         } else {

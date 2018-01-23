@@ -1,0 +1,47 @@
+<div class="cpage">
+  <div class="container page-title">
+    <div class="row">
+      <div class="col-auto mr-auto">
+        <h4>Edit Coordinator</h4>
+      </div>
+      <div class="col-auto">
+        <h4>CID #{{coordinator.cid}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="container filter-form-wrapper">
+    <form name="ecform" id="ec-form" ng-submit="saveCoordinator()" novalidate>
+      <div class="form-group">
+        <input type="text" class="form-control" id="sitename" placeholder="Site Name" ng-model="coordinator.sname">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="address" placeholder="Address" ng-model="coordinator.address" rows="3"></textarea>
+      </div>
+      <div class="form-group form-row">
+        <div class="col-sm">
+          <input type="text" class="form-control" id="city" placeholder="City" ng-model="coordinator.city">
+        </div>
+        <div class="col-sm">
+          <input type="number" ng-minlength="6" ng-maxlength="6" class="form-control" id="pincode" name="pincode" placeholder="Pincode" ng-model="coordinator.pincode">
+          <small ng-show="ecform.pincode.$dirty && ecform.pincode.$error.minlength">This is not a valid pincode.</small>
+          <small ng-show="ecform.pincode.$dirty && ecform.pincode.$error.maxlength">This is not a valid pincode.</small>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col-sm">
+          <input type="text" class="form-control" id="lastEditBy" name="leBy" ng-model="coordinator.lastEditBy" disabled>
+        </div>
+        <div class="col-sm">
+          <input type="text" class="form-control" id="lastEditOn" name="leOn" ng-model="coordinator.lastEditOn" disabled>
+        </div>
+      </div>
+      <div class="form-group form-button">
+        <button type="button" class="btn btn-primary" ng-disabled="dataloading" ng-href="/coordinators">Cancel</button>
+        <button type="submit" ng-disabled="ecform.$invalid || dataloading" class="btn btn-primary">Save</button>
+      </div>
+      <div class="form-group form-link" ng-show="msg">
+          {{ msg }}
+      </div>
+    </form>
+  </div>
+</div>

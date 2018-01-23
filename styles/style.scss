@@ -174,7 +174,7 @@ body {
   
   .filter-form-wrapper {
     background-color: $wht;
-    padding: 20px;
+    padding: 20px 20px 1px 20px;
     border-radius: 5px;
     margin-bottom: 1rem;
   }
@@ -208,6 +208,35 @@ body {
               font-weight: 700;
             }
           }
+        }
+      }
+    }
+  }
+  
+  #ec-form {
+    padding: 20px;
+    
+    .form-button {
+      text-align: right;
+      
+      .btn {
+        width: 120px;
+        background-color: $lgry;
+        color: $blk;
+        border-color: rgba(0, 0, 0, 0.15);
+        font-weight: 700;
+        &:hover {
+          background-color: $red;
+          color: $wht;
+          border-color: $red;
+        }
+      }
+      .btn.disabled, .btn:disabled {
+        opacity: .65;
+        &:hover {
+          background-color: $lgry;
+          color: $blk;
+          border-color: rgba(0, 0, 0, 0.15);
         }
       }
     }

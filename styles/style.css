@@ -124,7 +124,7 @@ body {
         border-color: rgba(0, 0, 0, 0.15); }
   .cpage .filter-form-wrapper {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 20px 20px 1px 20px;
     border-radius: 5px;
     margin-bottom: 1rem; }
   .cpage .ctable-wrapper {
@@ -149,5 +149,25 @@ body {
         .cpage .ctable-wrapper .ctable tbody tr a:hover {
           color: #fa4045;
           font-weight: 700; }
+  .cpage #ec-form {
+    padding: 20px; }
+    .cpage #ec-form .form-button {
+      text-align: right; }
+      .cpage #ec-form .form-button .btn {
+        width: 120px;
+        background-color: #e4e4e4;
+        color: #5c5c5c;
+        border-color: rgba(0, 0, 0, 0.15);
+        font-weight: 700; }
+        .cpage #ec-form .form-button .btn:hover {
+          background-color: #fa4045;
+          color: #ffffff;
+          border-color: #fa4045; }
+      .cpage #ec-form .form-button .btn.disabled, .cpage #ec-form .form-button .btn:disabled {
+        opacity: .65; }
+        .cpage #ec-form .form-button .btn.disabled:hover, .cpage #ec-form .form-button .btn:disabled:hover {
+          background-color: #e4e4e4;
+          color: #5c5c5c;
+          border-color: rgba(0, 0, 0, 0.15); }
 
 /*# sourceMappingURL=style.css.map */
