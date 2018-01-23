@@ -9,28 +9,28 @@
     $scope.coordinators = [
       {
         cid: 1,
-        sname: "Sunflower",
-        address: "Thakur Village, Kandivali (E)",
-        city: "Mumbai",
-        pincode: 400101,
+        sname: "CEPT",
+        address: "Vasant Vihar, Navrangpura",
+        city: "Ahmedabad",
+        pincode: 380009,
         lastEditBy: "Bhuvi",
         lastEditOn: "18-01-2017 23:01:01"
       },
       {
         cid: 2,
-        sname: "Lotus",
-        address: "Thakur Village, Kandivali (E)",
-        city: "Mumbai",
-        pincode: 400101,
+        sname: "IIM A",
+        address: "Vastrapur",
+        city: "Ahmedabad",
+        pincode: 380015,
         lastEditBy: "Bhuvi",
         lastEditOn: "18-01-2017 23:02:01"
       },
       {
         cid: 3,
-        sname: "Shuchidham",
-        address: "Dindoshi, Goregaon (E)",
+        sname: "IIT B",
+        address: "Powai",
         city: "Mumbai",
-        pincode: 400101,
+        pincode: 400076,
         lastEditBy: "Bhuvi",
         lastEditOn: "18-01-2017 23:03:01"
       },
@@ -39,18 +39,9 @@
         sname: "VNIT",
         address: "South Ambazari Road",
         city: "Nagpur",
-        pincode: 440011,
+        pincode: 440010,
         lastEditBy: "Bhuvi",
         lastEditOn: "18-01-2017 23:04:01"
-      },
-      {
-        cid: 5,
-        sname: "VNIT",
-        address: "Bajaj Nagar",
-        city: "Nagpur",
-        pincode: 440011,
-        lastEditBy: "Bhuvi",
-        lastEditOn: "18-01-2017 23:05:01"
       }
     ];
   }]);  
