@@ -135,6 +135,8 @@ body {
       color: #fa4045;
       margin-top: 1rem;
       margin-bottom: 1rem; }
+    .cpage .ctable-wrapper p.table-title {
+      font-size: 12px; }
     .cpage .ctable-wrapper .ctable {
       font-size: 12px;
       min-width: 510px;

@@ -41,9 +41,9 @@
           <th scope="col">Pincode</th>
           <th scope="col">LE By</th>
           <th scope="col">LE On</th>
-          <th scope="col">View</th>
           <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
+          <th scope="col">View</th>
+          <!--th scope="col">Delete</th-->
         </tr>
       </thead>
       <tbody>
@@ -55,11 +55,12 @@
           <td>{{coordinator.pincode}}</td>
           <td>{{coordinator.lastEditBy}}</td>
           <td>{{coordinator.lastEditOn}}</td>
-          <td><a>View</a></td>
           <td><a ng-href="./#!edit-coordinator/{{coordinator.cid}}">Edit</a></td>
-          <td><a ng-click="deleteCoordinator(coordinator.cid)">Delete</a></td>
+          <td><a>View</a></td>
+          <!--td><a ng-click="deleteCoordinator(coordinator.cid)">Delete</a></td-->
         </tr>
       </tbody>
     </table>
+    <p class="table-title">*Contact admin to add and delete coordinators.</p>
   </div>
 </div>
