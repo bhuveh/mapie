@@ -90,7 +90,7 @@
   }])  
   
   // Manage coordinators controller here.
-  .controller('CoordinatorsController', ['$scope', '$route', 'coordinatorService', function($scope, $route, coordinatorService) {
+  .controller('CoordinatorsController', ['$scope', '$route', '$rootScope', '$location', 'coordinatorService', function($scope, $route, $rootScope, $location, coordinatorService) {
     (function initController() {
       // Show all coordinators
       coordinatorService.GetAll()
@@ -98,11 +98,10 @@
           if(coordinators.length > 0) {
             $scope.coordinators = coordinators;
           } else {
-            console.log("Demo coordinator shown.");
             $scope.coordinators = [{
               cid: 1,
               sname: "Demo Coordinator",
-              address: "Cannot Be Deleted",
+              address: "CEPT University",
               city: "Ahmedabad",
               pincode: 380009,
               lastEditBy: "Bhuvi",
@@ -119,6 +118,12 @@
           $route.reload();
         });
     };
+    
+    $scope.passCoId = function(cid) {
+      console.log("COID passed " + cid);
+      $rootScope.globals.currentCoId = cid;
+      $location.path('/home');
+    };
   }])
   
   // Edit coordinator controller here.
@@ -133,7 +138,7 @@
             $scope.coordinator = {
               cid: 1,
               sname: "Demo Coordinator",
-              address: "Cannot Be Deleted",
+              address: "CEPT University",
               city: "Ahmedabad",
               pincode: 380009,
               lastEditBy: "Bhuvi",

@@ -61,8 +61,14 @@
         currentUserService.GetUserData(id)
           .then(function (userData) {
             $scope.userData = userData;
+            if(userData.coId) {
+              $rootScope.globals.currentCoId = userData.coId;
+            }
+            // Set current coordinator data
+            $scope.coId = $rootScope.globals.currentCoId;
+            console.log("BUT" + $scope.coId);
         });
-      })();
+      })();      
     }])
   
 })();

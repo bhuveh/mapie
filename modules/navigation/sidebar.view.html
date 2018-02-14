@@ -1,0 +1,83 @@
+<div>
+  <a href='#!/home'>
+    <div class='user-id'>
+      Coordinator ID: #{{user.id}}
+    </div>
+  </a>
+  <div class='menu'>
+    <div class="menu-item">
+      <a href="#!/info" ng-click="setSidebarButton(0)">
+        <div>Site Info</div>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a href="#!/vote" ng-click="setSidebarButton(0)">
+        <div>Comfort Survey</div>
+      </a>
+    </div>
+    <div class="menu-item">
+      <button type="button" data-toggle="collapse" data-target="#addDataMenu" aria-expanded="false" aria-controls="addDataMenu">
+        Add &amp; Edit Data
+      </button>
+    </div>
+    <div class="collapse" ng-class="{show:isButton(1)}" id="addDataMenu">
+      <div class="sub-menu-item menu-item">
+        <a href="#!/edit-info" ng-click="setSidebarButton(1)">
+          <div>Edit User/Site Details</div>
+        </a>
+      </div>
+      <div class="sub-menu-item menu-item" ng-show="{{user.flag}}">
+        <a href="#!/edit-logg" ng-click="setSidebarButton(1)">
+          <div>Add &amp; Edit Logger Locations</div>
+        </a>
+      </div>
+      <div class="sub-menu-item menu-item">
+        <a href="#!/bill" ng-click="setSidebarButton(1)">
+          <div>Add Electricity Bill</div>
+        </a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <button type="button" data-toggle="collapse" data-target="#viewDataMenu" aria-expanded="false" aria-controls="viewDataMenu">
+        View Data
+      </button>
+    </div>
+    <div class="collapse" ng-class="{show:isButton(2)}" id="viewDataMenu">
+      <div class="sub-menu-item menu-item">
+        <a href="#!/idata" ng-click="setSidebarButton(2)">
+          <div>Instantaneous Data</div>
+        </a>
+      </div>
+      <div class="sub-menu-item menu-item">
+        <a href="#!/cdata" ng-click="setSidebarButton(2)">
+          <div>Cumulative Data</div>
+        </a>
+      </div>
+      <div class="sub-menu-item menu-item">
+        <a href="#!/edata" ng-click="setSidebarButton(2)">
+          <div>Energy Consumption History</div>
+        </a>
+      </div>
+      <div class="sub-menu-item menu-item">
+        <a href="#!/plan">
+          <div>Logger Location Plan</div>
+        </a>
+      </div>
+    </div>
+    <div class="menu-item" ng-show="{{user.flag}}">
+      <a href="#!/acqn" ng-click="setSidebarButton(0)">
+        <div>Data Acquisition</div>
+      </a>
+    </div>
+    <div class="menu-item" ng-show="{{user.flag}}">
+      <a href="#!/expt" ng-click="setSidebarButton(0)">
+        <div>Data Export</div>
+      </a>
+    </div>
+    <div class="menu-item" ng-show="{{user.flag}}">
+      <a href="#!/read" ng-click="setSidebarButton(0)">
+        <div>Data Reading</div>
+      </a>
+    </div>
+  </div>
+</div>

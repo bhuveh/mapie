@@ -1,2 +1,14 @@
-<p>Hi. You're logged in!!</p>
-{{msg}}
+<topbar></topbar>
+<div class='wrapper'>
+  <sidebar ng-class='{showsb:sidebar}'></sidebar>
+  <div class='main' ng-hide='sidebar'>
+    <div class='home cbox container'>
+      <div class='title'>
+        Hi. You're logged in!!
+      </div>
+      User Id {{id}}
+      Coordinator Id {{coId}}
+      User Data {{userData}}
+    </div>
+  </div>
+</div>

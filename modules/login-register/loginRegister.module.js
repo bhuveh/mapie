@@ -18,7 +18,7 @@
             userService.GetByEmail(email)
               .then(function (user) {
                 if (user !== null && user.password === password) {
-                  response = { id: user.id, usertype: user.usertype, firstname: user.firstname, success: true };
+                  response = { id: user.id, usertype: user.usertype, firstname: user.firstname, coId: user.coId, success: true };
                 } else {
                   response = { sucess: false, message: 'Email or password is incorrect!' };
                 }
@@ -33,7 +33,7 @@
           //    });
         };
 
-        service.SetCredentials = function (id, usertype, firstname, password) {
+        service.SetCredentials = function (id, usertype, firstname, coId, password) {
           var authdata = base64.encode(id + ':' + usertype + ':' + firstname + ':' + password);
           
           $rootScope.globals = {
@@ -42,7 +42,8 @@
               type: usertype,
               name: firstname,
               authdata: authdata
-            }
+            },
+            currentCoId: coId
           };
           
           // Set default auth header for http requests.
@@ -303,7 +304,7 @@
         authenticationService.Login($scope.user.email, $scope.user.password, function(response) {
           if(response.success) {
             console.log("You've logged in!");
-            authenticationService.SetCredentials(response.id, response.usertype, response.firstname, $scope.user.password);
+            authenticationService.SetCredentials(response.id, response.usertype, response.firstname, response.coId, $scope.user.password);
             if(response.usertype) {
               console.log("Redirecting to coordinators.");
               $location.path('/coordinators');
@@ -321,8 +322,11 @@
     }])
   
     // Register controller here.
-    .controller('RegisterController', ['$scope', 'userService', '$location', function($scope, userService, $location) {
+    .controller('RegisterController', ['$scope', 'userService', 'authenticationService', '$location', function($scope, userService, authenticationService, $location) {
       (function initController() {
+        // Reset login status
+        authenticationService.ClearCredentials();
+        
         // Show all users
         userService.GetAll()
           .then(function (users) {
