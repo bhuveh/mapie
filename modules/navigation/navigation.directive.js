@@ -10,16 +10,20 @@ angular.module('app')
     return {
       restrict: 'E',
       templateUrl: './modules/navigation/sidebar.view.html',
-      controller: function($scope) {
+      controller: function($scope, fetchRootScopeService) {
+        $scope.user = fetchRootScopeService.GetUser();
+        $scope.coordinator = fetchRootScopeService.GetCoordinator();
+        
         $scope.sidebar = false;
+        $scope.sidebarButton = 0;
         $scope.toggleSidebar = function() {
           $scope.sidebar = !$scope.sidebar;
         };
 
-        $scope.sidebarButton = 0;
         $scope.setSidebarButton = function(button) {
           $scope.sidebarButton = button;
         };
+        
         $scope.isButton = function(button) {
           return $scope.sidebarButton == button;
         };

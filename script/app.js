@@ -31,7 +31,19 @@
           controller: 'HomeController',
           templateUrl: './modules/home/home.view.html'
         })
-        .otherwise({ redirectTo: '/login' });
+        .when('/site-info', {
+          controller: 'InfoCoordinatorController',
+          templateUrl: './modules/home/site-info.view.html'
+        })
+        .when('/survey', {
+          controller: 'SurveyController',
+          templateUrl: './modules/home/survey.view.html'
+        })
+        .when('/edit-user-data', {
+          controller: 'EditUserDataController',
+          templateUrl: './modules/home/edit-user-data.view.html'
+        })
+        .otherwise({ redirectTo: '/' });
     })
     
     // Run block for cookies.
@@ -51,11 +63,11 @@
             };
             // Redirect from researcher pages if not researcher.
             var researcherPage = $.inArray($location.path(), ['/coordinators']) !== -1;
-            var loggedIn = $rootScope.globals.currentUser;
-            if (researcherPage && !$rootScope.globals.currentUser.type) {
+            if (researcherPage && !$rootScope.globals.currentUser.usertype) {
                 console.log("You can't access the select screen!");
                 $location.path('/home');
             };
         });
-    }])    
+    }])
+  
 })();

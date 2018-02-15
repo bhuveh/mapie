@@ -2,7 +2,7 @@
   'use strict';
   
   // Defining our loginRegister module here.
-  angular.module('loginRegister', [])
+  angular.module('loginRegister', [ 'coordinators' ])
     
     // Authentication service here.
     .factory('authenticationService',
@@ -18,9 +18,9 @@
             userService.GetByEmail(email)
               .then(function (user) {
                 if (user !== null && user.password === password) {
-                  response = { id: user.id, usertype: user.usertype, firstname: user.firstname, coId: user.coId, success: true };
+                  response = { user: user, success: true };
                 } else {
-                  response = { sucess: false, message: 'Email or password is incorrect!' };
+                  response = { success: false, message: 'Email or password is incorrect!' };
                 }
                 callback(response);
               });
@@ -33,18 +33,13 @@
           //    });
         };
 
-        service.SetCredentials = function (id, usertype, firstname, coId, password) {
-          var authdata = base64.encode(id + ':' + usertype + ':' + firstname + ':' + password);
+        service.SetCredentials = function (user, password) {
+          var authdata = base64.encode(user.id + ':' + user.usertype + ':' + password);
           
-          $rootScope.globals = {
-            currentUser: {
-              id: id,
-              type: usertype,
-              name: firstname,
-              authdata: authdata
-            },
-            currentCoId: coId
-          };
+          console.log("user details set in rootscope");
+          $rootScope.globals.authdata = authdata;
+          $rootScope.globals.currentUser = user;
+          console.log($rootScope.globals.currentUser);
           
           // Set default auth header for http requests.
           $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
@@ -56,7 +51,7 @@
         };
 
         service.ClearCredentials = function () {
-            console.log("Credentials cleared!");
+            //console.log("Credentials cleared!");
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic ';
@@ -252,7 +247,14 @@
         var users = getUsers();
         for (var i = 0; i < users.length; i++) {
           if (users[i].id === user.id) {
-            users[i] = user;
+            //users[i] = user;
+            users[i]["firstname"] = user.firstname;
+            users[i]["lastname"] = user.lastname;
+            users[i]["email"] = user.email;
+            users[i]["phone"] = user.phone;
+            users[i]["address"] = user.address;
+            users[i]["city"] = user.city;
+            users[i]["pincode"] = user.pincode;
             break;
           }
         }
@@ -291,7 +293,7 @@
     }])
   
     // Login controller here.
-    .controller('LoginController', ['$scope', '$location', 'authenticationService', function($scope, $location, authenticationService) {
+    .controller('LoginController', ['$scope', '$location', 'authenticationService', 'coordinatorService', function($scope, $location, authenticationService, coordinatorService) {
       $scope.login = login;
       
       (function initController() {
@@ -300,12 +302,16 @@
       })();
       
       function login() {
+        console.log("Clicked Login");
         $scope.dataLoading = true;
         authenticationService.Login($scope.user.email, $scope.user.password, function(response) {
           if(response.success) {
             console.log("You've logged in!");
-            authenticationService.SetCredentials(response.id, response.usertype, response.firstname, response.coId, $scope.user.password);
-            if(response.usertype) {
+            
+            authenticationService.SetCredentials(response.user, $scope.user.password);
+            coordinatorService.SetCurrentCoordinator(response.user.coId);
+            
+            if(response.user.usertype) {
               console.log("Redirecting to coordinators.");
               $location.path('/coordinators');
             } else {
@@ -327,11 +333,11 @@
         // Reset login status
         authenticationService.ClearCredentials();
         
-        // Show all users
+        /* Show all users
         userService.GetAll()
           .then(function (users) {
             console.log(users);
-        });
+        });*/
       })();
       
       $scope.register = function(){

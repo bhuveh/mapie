@@ -1,0 +1,45 @@
+<topbar></topbar>
+<div class='wrapper'>
+  <sidebar ng-class='{showsb:sidebar}'></sidebar>
+  <div class='main' ng-hide='sidebar'>
+    <div class='sinfo cbox container'>
+      <div class='title'>
+        Site Information
+      </div>
+      <div class='site-details'>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Coordinator ID</div>
+          <div class='sd-content col-sm'>{{coordinator.cid}}</div>
+        </div>
+      </div>
+      <div class='site-details'>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Site Name</div>
+          <div class='sd-content col-sm'>{{coordinator.sname}}</div>
+        </div>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Address</div>
+          <div class='sd-content col-sm'>{{coordinator.address}}</div>
+        </div>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>City</div>
+          <div class='sd-content col-sm'>{{coordinator.city}}</div>
+        </div>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Pincode</div>
+          <div class='sd-content col-sm'>{{coordinator.pincode}}</div>
+        </div>
+      </div>
+      <div class='site-details'>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Last Edit By</div>
+          <div class='sd-content col-sm'>{{coordinator.lastEditBy}}</div>
+        </div>
+        <div class='site-detail row'>
+          <div class='sd-title col-sm'>Last Edit On</div>
+          <div class='sd-content col-sm'>{{coordinator.lastEditOn}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,73 +2,96 @@
   'use strict';
   
   // Defining our home module here.
-  angular.module('home', [])
-    // Current User service with API
-    /*
-    .factory('currentUserService', [ '$http', function ($http) {
-      var service = {};
- 
-      service.GetUserData = GetUserData;
- 
-      return service;
-      
-      function GetUserData(id) {
-        return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
-      }
-      
-      // private functions
-      function handleSuccess(res) {
-        return res.data;
-      }
-      function handleError(error) {
-        return function () {
-          return { success: false, message: error };
-        };
-      }
-    }])
-    */
+  angular.module('home', [ 'rzModule', 'loginRegister', 'coordinators' ])
   
-    // Fake user service with local storage.
-    .factory('currentUserService', [ '$timeout', '$filter', '$q', function ($timeout, $filter, $q) {
+    // Fetch rootScope data service.    
+    .factory('fetchRootScopeService', [ '$rootScope', function ($rootScope) {
       var service = {};
-      
-      service.GetUserData = GetUserData;
 
+      service.GetUser = GetUser;
+      service.GetCoordinator = GetCoordinator;
+      
       return service;
- 
-      function GetUserData(id) {
-        var deferred = $q.defer();
-        var filtered = $filter('filter')(getUsers(), { id: id });
-        var user = filtered.length ? filtered[0] : null;
-        deferred.resolve(user);
-        return deferred.promise;
-      };
- 
-      // private functions 
-      function getUsers() {
-        if(!localStorage.users){
-          localStorage.users = JSON.stringify([]);
-        }
-        return JSON.parse(localStorage.users);
+      
+      function GetUser() {
+        var user = $rootScope.globals.currentUser;
+        return user;
       }
-    }])
-  
+      
+      function GetCoordinator() {
+        var coordinator = $rootScope.globals.currentCoordinator;
+        return coordinator;
+      }
+    
+    }]) 
+    
     // Home controller here.
-    .controller('HomeController', ['$scope', '$rootScope', 'currentUserService', function($scope, $rootScope, currentUserService) {
+    .controller('HomeController', ['$scope', '$rootScope', 'fetchRootScopeService', function($scope, $rootScope, fetchRootScopeService) {
+    }])
+    
+    // View site info details controller here.
+    .controller('InfoCoordinatorController', ['$scope', function($scope) {
       (function initController() {
-        // Get current user data
-        var id = $rootScope.globals.currentUser.id;
-        currentUserService.GetUserData(id)
-          .then(function (userData) {
-            $scope.userData = userData;
-            if(userData.coId) {
-              $rootScope.globals.currentCoId = userData.coId;
-            }
-            // Set current coordinator data
-            $scope.coId = $rootScope.globals.currentCoId;
-            console.log("BUT" + $scope.coId);
-        });
-      })();      
+        
+      })();
     }])
   
+    // Survey controller, has old slider for now.
+    .controller('SurveyController', ['$scope', '$window', function($scope, $window) {
+      $scope.slider = {
+        val: 0,
+        opt: {
+          floor: -400,
+          ceil: 400,
+          step: 1,
+          vertical: true,
+          hidePointerLabels: true,
+          hideLimitLabels: true,
+          translate: function(value) {
+            return value/100;
+          },
+          showTicks: 100,
+          getLegend: function(value) {
+            if(value==-400)
+              return 'Very Cold';
+            if(value==-300)
+              return 'Cold';
+            if(value==-200)
+              return 'Cool';
+            if(value==-100)
+              return 'Slightly Cool';
+            if(value==0)
+              return 'Neutral';
+            if(value==100)
+              return 'Slightly Warm';
+            if(value==200)
+              return 'Warm';
+            if(value==300)
+              return 'Hot';
+            if(value==400)
+              return 'Very Hot';
+            return null;
+          },
+        }
+      };
+      $scope.clickButton = function() {
+        $window.alert('Your vote has been submitted! Thanks for voting!');
+      };
+    }])
+      
+    // Edit user information controller.
+    .controller('EditUserDataController', ['$scope', '$window', 'userService', 'authenticationService', function($scope, $window, userService, authenticationService) {     
+      $scope.saveUser = function() {
+        $scope.dataLoading = true;
+  
+        userService.Update($scope.user)
+          .then(function () {
+            console.log('User update successful!');
+            $scope.msg = 'Changes made!';
+            authenticationService.SetCredentials($scope.user, $scope.user.password);
+            $scope.dataLoading = false;
+          });     
+        $window.alert('Changes to user details saved.');
+      };
+    }]);
 })();

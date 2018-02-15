@@ -1,0 +1,81 @@
+<topbar></topbar>
+<div class='wrapper'>
+  <sidebar ng-class='{showsb:sidebar}'></sidebar>
+  <div class='main' ng-hide='sidebar'>
+    <div class='einfo cbox container'>
+      <div class='title'>
+        Edit User Information
+      </div>
+      <div class='info-form'>
+        <form name="euform" id="eu-form" ng-submit="saveUser()" novalidate>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="id">User ID</label>
+                <input type="text" class="form-control" id="id" ng-value="user.id" ng-model="user.id" readonly>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="cid">Coordinator ID</label>
+                <input type="text" class="form-control" id="cid" ng-value="user.coId" ng-model="user.id" readonly>
+              </div>
+            </div>
+          </div>            
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" ng-value="user.firstname" ng-model="user.firstname">
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" ng-value="user.lastname" ng-model="user.lastname">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email ID*</label>
+            <input type="email" class="form-control" name="email" id="email" ng-value="user.email" ng-model="user.email" required>
+            <small ng-show="euform.email.$touched && euform.email.$error.required">Email ID is required!</small>
+            <small ng-show="euform.email.$dirty && euform.email.$error.email">This is not a valid email.</small>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="number" ng-minlength="10" ng-maxlength="10" class="form-control" name="phone" id="phone" ng-value="user.phone" ng-model="user.phone">
+            <small ng-show="euform.phone.$dirty && euform.phone.$error.minlength">This is not a valid phone number.</small>
+            <small ng-show="euform.phone.$dirty && euform.phone.$error.maxlength">This is not a valid phone number.</small>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea rows="3" class="form-control" id="address" ng-value="user.address" ng-model="user.address"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" ng-value="user.city" ng-model="user.city">
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="number" ng-minlength="6" ng-maxlength="6" class="form-control" id="pincode" ng-value="user.pincode" ng-model="user.pincode">
+                <small ng-show="euform.pincode.$dirty && euform.pincode.$error.minlength">This is not a valid pincode.</small>
+                <small ng-show="euform.pincode.$dirty && euform.pincode.$error.maxlength">This is not a valid pincode.</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-button">
+            <button type="submit" ng-disabled="euform.$invalid || dataLoading" class="btn btn-primary info-button">SAVE</button>
+          </div>
+          <div class="form-group form-link" ng-show="msg">
+              {{ msg }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

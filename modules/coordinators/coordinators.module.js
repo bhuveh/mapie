@@ -5,7 +5,7 @@
   angular.module('coordinators', [ 'ngRoute' ])
   
   // Fake API service to manage coordinators with local storage.
-  .factory('coordinatorService', [ '$timeout', '$filter', '$q', function ($timeout, $filter, $q) {
+  .factory('coordinatorService', [ '$timeout', '$filter', '$q', '$rootScope', function ($timeout, $filter, $q, $rootScope) {
     var service = {};
 
     service.GetAll = GetAll;
@@ -13,6 +13,8 @@
     service.Create = Create;
     service.Update = Update;
     service.Delete = Delete;
+    
+    service.SetCurrentCoordinator = SetCurrentCoordinator;
 
     return service;
 
@@ -23,6 +25,7 @@
     };
 
     function GetById(cid) {
+      console.log("Called Get By ID");
       var deferred = $q.defer();
       var filtered = $filter('filter')(getCoordinators(), { cid: cid });
       var coordinator = filtered.length ? filtered[0] : null;
@@ -74,12 +77,32 @@
       deferred.resolve();
       return deferred.promise;
     };
-
+    
+    function SetCurrentCoordinator(cid) {
+      GetById(cid).then( function(coordinator) {
+        console.log("Stored coordinator in rootscope.");
+        $rootScope.globals.currentCoordinator = coordinator;
+        console.log($rootScope.globals.currentCoordinator);
+      });
+    };
+    
     // private functions
 
     function getCoordinators() {
       if(!localStorage.coordinators){
-        localStorage.coordinators = JSON.stringify([]);
+        // Demo coordinator if no coordinators found.
+        var coordinators = [{
+          cid: 1,
+          sname: "Demo Coordinator",
+          address: "CEPT University",
+          city: "Ahmedabad",
+          pincode: 380009,
+          lastEditBy: "Researcher",
+          lastEditOn: "15-02-2018 15:02:18"
+        }];
+        localStorage.coordinators = JSON.stringify(coordinators);
+      } else {
+        // Nothing.
       }
       return JSON.parse(localStorage.coordinators);
     }
@@ -92,21 +115,13 @@
   // Manage coordinators controller here.
   .controller('CoordinatorsController', ['$scope', '$route', '$rootScope', '$location', 'coordinatorService', function($scope, $route, $rootScope, $location, coordinatorService) {
     (function initController() {
-      // Show all coordinators
+      // Show all coordinators. Needs loading gif.
       coordinatorService.GetAll()
         .then(function (coordinators) { 
           if(coordinators.length > 0) {
             $scope.coordinators = coordinators;
           } else {
-            $scope.coordinators = [{
-              cid: 1,
-              sname: "Demo Coordinator",
-              address: "CEPT University",
-              city: "Ahmedabad",
-              pincode: 380009,
-              lastEditBy: "Bhuvi",
-              lastEditOn: "18-01-2017 23:01:01"
-            }];
+            // No coordinator found?
           };
         });
     })();
@@ -119,10 +134,9 @@
         });
     };
     
-    $scope.passCoId = function(cid) {
-      console.log("COID passed " + cid);
-      $rootScope.globals.currentCoId = cid;
-      $location.path('/home');
+    $scope.setCoordinator = function(cid) {
+      coordinatorService.SetCurrentCoordinator(cid);
+      $location.path('/home');      
     };
   }])
   
@@ -141,13 +155,13 @@
               address: "CEPT University",
               city: "Ahmedabad",
               pincode: 380009,
-              lastEditBy: "Bhuvi",
+              lastEditBy: "Admin",
               lastEditOn: "18-01-2017 23:01:01"
             };
             $scope.dataloading = true;
             coordinatorService.Create($scope.coordinator)
             .then(function () {
-              console.log("Demo coordinator added.");
+              //console.log("Demo coordinator added.");
               $scope.dataloading = false;
             });
           };
@@ -185,6 +199,6 @@
           $location.path('/coordinators');
         });
     };
-  }]);  
+  }])  
 })();
                                          

@@ -1,0 +1,19 @@
+<topbar></topbar>
+<div class='wrapper'>
+  <sidebar ng-class='{showsb:sidebar}'></sidebar>
+  <div class='main' ng-hide='sidebar'>
+    <div class='vote cbox'>
+      <div class='title'>
+        Replace By Survey
+      </div>
+      <div class='slider' ng-controller='SurveyController'>
+        <rzslider class='comfort-slider'
+                  rz-slider-model='slider.val'
+                  rz-slider-options='slider.opt'></rzslider>
+      </div>
+      <div class='vote-button' ng-click='clickButton()'>
+        VOTE!
+      </div>
+    </div>
+  </div>
+</div>
