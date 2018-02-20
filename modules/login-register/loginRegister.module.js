@@ -36,10 +36,8 @@
         service.SetCredentials = function (user, password) {
           var authdata = base64.encode(user.id + ':' + user.usertype + ':' + password);
           
-          console.log("user details set in rootscope");
           $rootScope.globals.authdata = authdata;
           $rootScope.globals.currentUser = user;
-          console.log($rootScope.globals.currentUser);
           
           // Set default auth header for http requests.
           $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
@@ -51,7 +49,6 @@
         };
 
         service.ClearCredentials = function () {
-            //console.log("Credentials cleared!");
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic ';
@@ -302,24 +299,19 @@
       })();
       
       function login() {
-        console.log("Clicked Login");
         $scope.dataLoading = true;
         authenticationService.Login($scope.user.email, $scope.user.password, function(response) {
           if(response.success) {
-            console.log("You've logged in!");
             
             authenticationService.SetCredentials(response.user, $scope.user.password);
             coordinatorService.SetCurrentCoordinator(response.user.coId);
             
             if(response.user.usertype) {
-              console.log("Redirecting to coordinators.");
               $location.path('/coordinators');
             } else {
-              console.log("Redirecting to home.");
               $location.path('/home');
             };
           } else {
-            console.log("You've not logged in!");
             $scope.error = response.message;
             $scope.dataLoading = false;
           }
@@ -352,11 +344,9 @@
         userService.Create($scope.regUser)
           .then(function (response) {
             if (response.success) {
-              console.log('Registration successful!');
               $scope.msg = 'Registration successful!';
               $location.path('/login');
             } else {
-              console.log(response.message);
               $scope.dataLoading = false;
             }
           });

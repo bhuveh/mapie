@@ -58,13 +58,11 @@
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // Redirect to login page if not logged in.
             if ($location.path() !== '/login' && $location.path() !== '/register' && !$rootScope.globals.currentUser) {
-                console.log("No you're not logged in.");
                 $location.path('/login');
             };
             // Redirect from researcher pages if not researcher.
             var researcherPage = $.inArray($location.path(), ['/coordinators']) !== -1;
             if (researcherPage && !$rootScope.globals.currentUser.usertype) {
-                console.log("You can't access the select screen!");
                 $location.path('/home');
             };
         });

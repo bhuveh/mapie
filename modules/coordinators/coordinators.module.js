@@ -25,7 +25,6 @@
     };
 
     function GetById(cid) {
-      console.log("Called Get By ID");
       var deferred = $q.defer();
       var filtered = $filter('filter')(getCoordinators(), { cid: cid });
       var coordinator = filtered.length ? filtered[0] : null;
@@ -80,9 +79,7 @@
     
     function SetCurrentCoordinator(cid) {
       GetById(cid).then( function(coordinator) {
-        console.log("Stored coordinator in rootscope.");
         $rootScope.globals.currentCoordinator = coordinator;
-        console.log($rootScope.globals.currentCoordinator);
       });
     };
     
@@ -129,7 +126,6 @@
     $scope.deleteCoordinator = function(cid) {
       coordinatorService.Delete(cid)
         .then(function () {
-          console.log("Coordinator " + cid + " deleted!");
           $route.reload();
         });
     };
@@ -161,7 +157,6 @@
             $scope.dataloading = true;
             coordinatorService.Create($scope.coordinator)
             .then(function () {
-              //console.log("Demo coordinator added.");
               $scope.dataloading = false;
             });
           };

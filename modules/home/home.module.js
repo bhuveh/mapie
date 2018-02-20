@@ -26,14 +26,11 @@
     }]) 
     
     // Home controller here.
-    .controller('HomeController', ['$scope', '$rootScope', 'fetchRootScopeService', function($scope, $rootScope, fetchRootScopeService) {
+    .controller('HomeController', ['$scope', 'fetchRootScopeService', function($scope, fetchRootScopeService) {
     }])
     
     // View site info details controller here.
     .controller('InfoCoordinatorController', ['$scope', function($scope) {
-      (function initController() {
-        
-      })();
     }])
   
     // Survey controller, has old slider for now.
@@ -80,18 +77,33 @@
     }])
       
     // Edit user information controller.
-    .controller('EditUserDataController', ['$scope', '$window', 'userService', 'authenticationService', function($scope, $window, userService, authenticationService) {     
+    .controller('EditUserDataController', ['$scope', '$window', 'userService', 'authenticationService', 'fetchRootScopeService', '$location', function($scope, $window, userService, authenticationService, fetchRootScopeService, $location) {
+      $scope.user = fetchRootScopeService.GetUser();
+      $scope.eu = {
+        id : $scope.user.id,
+        coId : $scope.user.coId,
+        firstname : $scope.user.firstname,
+        lastname : $scope.user.lastname,
+        email : $scope.user.email,
+        phone : $scope.user.phone,
+        address : $scope.user.address,
+        city : $scope.user.city,
+        pincode : $scope.user.pincode,
+        usertype : $scope.user.usertype,
+        cpassword : $scope.user.cpassword,
+        password : $scope.user.password,
+      }
       $scope.saveUser = function() {
         $scope.dataLoading = true;
   
-        userService.Update($scope.user)
+        userService.Update($scope.eu)
           .then(function () {
-            console.log('User update successful!');
             $scope.msg = 'Changes made!';
-            authenticationService.SetCredentials($scope.user, $scope.user.password);
+            authenticationService.SetCredentials($scope.eu, $scope.user.password);
             $scope.dataLoading = false;
           });     
         $window.alert('Changes to user details saved.');
+        $location.path('/edit-user-data');
       };
     }]);
 })();
