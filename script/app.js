@@ -2,7 +2,7 @@
   'use strict';
   
   // Defining our main app module here, with dependencies.
-  angular.module('app', [ 'loginRegister', 'coordinators', 'home', 'ngRoute', 'ngCookies' ])
+  angular.module('app', [ 'loginRegister', 'coordinators', 'home', 'dataHandling', 'ngRoute', 'ngCookies' ])
   
     // Routing here.
     .config(function($routeProvider){
@@ -60,6 +60,10 @@
         .when('/data-read', {
           templateUrl: './modules/home/data-read.view.html'
         })
+        .when('/handling', {
+          //controller: 'DataController',
+          templateUrl: './modules/data-handling/data-handling.view.html'
+        })
         .otherwise({ redirectTo: '/' });
     })
     
@@ -91,8 +95,6 @@
         button : 0,
         hide : false
       };
-      console.log("sidebarButton : " + $scope.sidebar.button);
-      console.log("hide : " + $scope.sidebar.hide);
     }])
   
 })();
