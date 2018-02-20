@@ -509,18 +509,21 @@ body {
     bottom: -15px;
   }
   
-  .vote-button{
+  .vote-button {
+    display: block;
     width: 200px;
-    height: 60px;
     background-color: $red;
+    border-width: 0;
     color: $wht;
     font-size: 18px;
-    line-height: 60px;
+    line-height: 40px;
     text-align: center;
-    margin: 10px auto;
+    margin: 0px auto;
+    margin-top: 30px;
     &:hover {
       cursor: pointer;
-      color: $gry
+      background-color: $tred;
+      color: $red;
     }
   }
 }
@@ -549,7 +552,34 @@ body {
     margin-top: 30px;
     &:hover {
       cursor: pointer;
-      color: $gry;
+      background-color: $tred;
+      color: $red;
+    }
+  }
+}
+
+// Add Electricity Bill
+.ebill {
+  .bill-form {
+    font-size: 14px;
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 0px 10px;    
+  }
+  .bill-button{
+    width: 200px;
+    background-color: $red;
+    border-width: 0;
+    color: $wht;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 30px;
+    &:hover {
+      cursor: pointer;
+      background-color: $tred;
+      color: $red;
     }
   }
 }

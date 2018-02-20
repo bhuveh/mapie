@@ -1,0 +1,36 @@
+<topbar></topbar>
+<div class='wrapper'>
+  <sidebar ng-class='{showsb:sidebar.hide}'></sidebar>
+  <div class='main' ng-hide='sidebar.hide'>
+    <div class='ebill cbox'>
+      <div class='title'>
+        Add Electricity Bill
+      </div>
+      <div class='bill-form'>
+        <form>
+          <div class='form-group'>
+            <label for="serviceno">Service No.</label>
+            <input type='text' class="form-control" id="serviceno" placeholder="Service No." />
+          </div>
+          <div class='form-group'>
+            <label for="tno">T. No.</label>
+            <input type='text' class="form-control" id="tno" placeholder="T No." />
+          </div>
+          <div class='form-group'>
+            <label for="billperiod">Billing Period</label>
+            <input type='text' class="form-control" id="billperiod" placeholder="Billing Period" />
+          </div>
+          <div class='form-group'>
+            <label for="units">Units Consumed</label>
+            <input type='text' class="form-control" id="units" placeholder="Units" />
+          </div>
+          <div class='form-group'>
+            <label for="amount">Bill Amount</label>
+            <input type='text' class="form-control" id="amount" placeholder="Amount" />
+          </div>
+          <div class="btn btn-primary bill-button" ng-click='clickButton()'>ADD BILL</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

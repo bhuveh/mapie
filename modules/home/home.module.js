@@ -105,5 +105,16 @@
         $window.alert('Changes to user details saved.');
         $location.path('/edit-user-data');
       };
-    }]);
+    }])
+  
+    // Edit logger locations controller here.
+    .controller('EditLoggerController', ['$scope', function($scope) {
+    }])
+  
+    // Add electricity bill controller. Data goes nowhere.
+    .controller('AddBillController', ['$scope', '$window', function($scope, $window) {
+      $scope.clickButton = function() {
+        $window.alert('Bill details have been added.');
+      };
+    }])
 })();

@@ -43,6 +43,23 @@
           controller: 'EditUserDataController',
           templateUrl: './modules/home/edit-user-data.view.html'
         })
+        .when('/edit-logg', {
+          controller: 'EditLoggerController',
+          templateUrl: './modules/home/edit-log-loc.view.html'
+        })
+        .when('/add-bill', {
+          controller: 'AddBillController',
+          templateUrl: './modules/home/add-bill.view.html'
+        })
+        .when('/data-acqn', {
+          templateUrl: './modules/home/data-acqn.view.html'
+        })
+        .when('/data-expt', {
+          templateUrl: './modules/home/data-expt.view.html'
+        })
+        .when('/data-read', {
+          templateUrl: './modules/home/data-read.view.html'
+        })
         .otherwise({ redirectTo: '/' });
     })
     
@@ -61,11 +78,21 @@
                 $location.path('/login');
             };
             // Redirect from researcher pages if not researcher.
-            var researcherPage = $.inArray($location.path(), ['/coordinators']) !== -1;
+            var researcherPage = $.inArray($location.path(), ['/coordinators', '/edit-logg', '/data-acqn', '/data-expt', '/data-read']) !== -1;
             if (researcherPage && !$rootScope.globals.currentUser.usertype) {
                 $location.path('/home');
             };
         });
+    }])
+  
+    // Everything controller.
+    .controller('RootController', ['$scope', function($scope) {
+      $scope.sidebar = {
+        button : 0,
+        hide : false
+      };
+      console.log("sidebarButton : " + $scope.sidebar.button);
+      console.log("hide : " + $scope.sidebar.hide);
     }])
   
 })();

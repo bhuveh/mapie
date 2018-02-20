@@ -369,17 +369,20 @@ body {
     margin-left: -25px;
     bottom: -15px; }
   .vote .vote-button {
+    display: block;
     width: 200px;
-    height: 60px;
     background-color: #fa4045;
+    border-width: 0;
     color: #ffffff;
     font-size: 18px;
-    line-height: 60px;
+    line-height: 40px;
     text-align: center;
-    margin: 10px auto; }
+    margin: 0px auto;
+    margin-top: 30px; }
     .vote .vote-button:hover {
       cursor: pointer;
-      color: #d2d2d2; }
+      background-color: rgba(250, 64, 69, 0.1);
+      color: #fa4045; }
 
 .einfo .info-form {
   font-size: 14px;
@@ -401,6 +404,27 @@ body {
   margin-top: 30px; }
   .einfo .info-button:hover {
     cursor: pointer;
-    color: #d2d2d2; }
+    background-color: rgba(250, 64, 69, 0.1);
+    color: #fa4045; }
+
+.ebill .bill-form {
+  font-size: 14px;
+  max-width: 400px;
+  margin: 0px auto;
+  padding: 0px 10px; }
+.ebill .bill-button {
+  width: 200px;
+  background-color: #fa4045;
+  border-width: 0;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 30px; }
+  .ebill .bill-button:hover {
+    cursor: pointer;
+    background-color: rgba(250, 64, 69, 0.1);
+    color: #fa4045; }
 
 /*# sourceMappingURL=style.css.map */

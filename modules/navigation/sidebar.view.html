@@ -28,11 +28,11 @@
       </div>
       <div class="sub-menu-item menu-item" ng-show="user.usertype == 1">
         <a href="#!/edit-logg" ng-click="setSidebarButton(1)">
-          <div>Add &amp; Edit Logger Locations</div>
+          <div>Edit Logger Locations</div>
         </a>
       </div>
       <div class="sub-menu-item menu-item">
-        <a href="#!/bill" ng-click="setSidebarButton(1)">
+        <a href="#!/add-bill" ng-click="setSidebarButton(1)">
           <div>Add Electricity Bill</div>
         </a>
       </div>
@@ -59,23 +59,23 @@
         </a>
       </div>
       <div class="sub-menu-item menu-item">
-        <a href="#!/plan">
+        <a href="#!/plan" ng-click="setSidebarButton(2)">
           <div>Logger Location Plan</div>
         </a>
       </div>
     </div>
     <div class="menu-item" ng-show="user.usertype == 1">
-      <a href="#!/acqn" ng-click="setSidebarButton(0)">
+      <a href="#!/data-acqn" ng-click="setSidebarButton(0)">
         <div>Data Acquisition</div>
       </a>
     </div>
     <div class="menu-item" ng-show="user.usertype == 1">
-      <a href="#!/expt" ng-click="setSidebarButton(0)">
+      <a href="#!/data-expt" ng-click="setSidebarButton(0)">
         <div>Data Export</div>
       </a>
     </div>
     <div class="menu-item" ng-show="user.usertype == 1">
-      <a href="#!/read" ng-click="setSidebarButton(0)">
+      <a href="#!/data-read" ng-click="setSidebarButton(0)">
         <div>Data Reading</div>
       </a>
     </div>
