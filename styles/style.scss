@@ -558,6 +558,37 @@ body {
   }
 }
 
+// Edit Logger Location
+.logloc {
+  .logger-form {
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0px auto;
+    margin-top: 20px;
+    padding: 10px;
+    small {
+      color: $red;
+      font-size: 12px;
+    }
+  }
+  .log-button{
+    width: 150px;
+    background-color: $red;
+    border-width: 0;
+    color: $wht;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 10px;
+    &:hover {
+      cursor: pointer;
+      background-color: $tred;
+      color: $red;
+    }
+  }
+}
+
 // Add Electricity Bill
 .ebill {
   .bill-form {

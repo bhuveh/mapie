@@ -109,6 +109,9 @@
   
     // Edit logger locations controller here.
     .controller('EditLoggerController', ['$scope', function($scope) {
+      $scope.clickButton = function(device) {
+        $window.alert('Logger location has been saved.');
+      };
     }])
   
     // Add electricity bill controller. Data goes nowhere.

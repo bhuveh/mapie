@@ -2,9 +2,32 @@
 <div class='wrapper'>
   <sidebar ng-class='{showsb:sidebar.hide}'></sidebar>
   <div class='main' ng-hide='sidebar.hide'>
-    <div class='home cbox container'>
+    <div class='logloc cbox container'>
       <div class='title'>
         Edit Logger Locations
+      </div>
+      <div class='logger-form'>
+        <form name="logform" id="log-form" novalidate>
+          <div class="row" ng-repeat="device in coordinator.devices">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="id">Device ID</label>
+                <input type="text" class="form-control" id="id" ng-model="device.id" readonly>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="loc">Location</label>
+                <input type="text" class="form-control" id="loc" ng-model="device.location">
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <button type="button" class="btn btn-primary log-button" id="save" ng-click="clickButton(device)">SAVE</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
