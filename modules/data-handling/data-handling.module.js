@@ -9,12 +9,64 @@
         var rootUrl = 'https://pirhoalpha.com';
         var service = {};
       
-        service.get = function(deviceObject) {
+        service.getCumulative = function(deviceObject) {
 		  return $http.post(rootUrl + '/view/device/analysis/', deviceObject);
-        };            
+        };
+        service.getInstantaneous = function(id) {
+		  return $http.get(rootUrl + '/view/device/logs/' + id);
+        };  
 		
         return service;
 	}])
+  
+  // Instantaneous Data Controller.
+    .controller('InstController', [ '$scope', 'DataService', function($scope, DataService) {
+      $scope.data = [];
+      
+      DataService.getInstantaneous("4434aa34awf2")
+      .then(function (response) {
+          console.log(response.data);
+        });      
+      
+    }])
+  
+  // Cumulative Data Controller.
+    .controller('CumuController', [ '$scope', 'DataService', function($scope, DataService) {
+      $scope.data = [];
+      
+      var deviceObject = {
+        'start_date': '2018/01/31', 
+        'end_date': '2018/02/19',
+        'device_id': '40d63c07dd36'
+      };
+      
+      var createDateArray = function(startDate, endDate) {
+        var sd = new Date(startDate);
+        var ed = new Date(endDate);
+        var da = [];
+        
+        for (var dt = sd; dt <= ed; dt.setDate(dt.getDate() + 1)) {          
+          // Match formats.
+          var d = dt.getDate();
+          if (d.toString().length < 2) 
+            d = '0' + d;
+          var m = dt.getMonth() + 1;
+          if (m.toString().length < 2) 
+            m = '0' + m;
+          var y = dt.getFullYear();
+          da.push(y + "-" + m + "-" + d + " 00:00:00");
+        }
+        return da;
+      };
+      
+      var dateArr = createDateArray(deviceObject.start_date, deviceObject.end_date);
+      
+      DataService.getCumulative("deviceObject")
+      .then(function (response) {
+          console.log(response.data);
+        });      
+      
+    }])  
   
     // Directive.
     .directive('heatmap', function() {

@@ -51,6 +51,14 @@
           controller: 'AddBillController',
           templateUrl: './modules/home/add-bill.view.html'
         })
+        .when('/instantaneous', {
+          controller: 'InstController',
+          templateUrl: './modules/data-handling/instantaneous.view.html'
+        })
+        .when('/cumulative', {
+          controller: 'CumuController',
+          templateUrl: './modules/data-handling/cumulative.view.html'
+        })
         .when('/data-acqn', {
           templateUrl: './modules/home/data-acqn.view.html'
         })
