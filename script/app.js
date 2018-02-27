@@ -56,7 +56,7 @@
           templateUrl: './modules/data-handling/instantaneous.view.html'
         })
         .when('/cumulative', {
-          controller: 'CumuController',
+          //controller: 'CumuController',
           templateUrl: './modules/data-handling/cumulative.view.html'
         })
         .when('/data-acqn', {

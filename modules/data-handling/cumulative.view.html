@@ -4,7 +4,24 @@
   <div class='main' ng-hide='sidebar.hide'>
     <div class='cdata cbox container'>
       <div class='title'>
-        Cumulative
+        Cumulative Data
+      </div>
+      <div class='buttons-wrapper'>
+        <div class="loading" ng-hide="enabled">Loading...</div>
+        <form class="form-inline">
+          <div class="form-group">
+            <select class="form-control" id="parameter" ng-disabled="!enabled" ng-model="para">
+              <option>Temperature</option>
+              <option>Humidity</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary getPara" ng-disabled="!enabled" ng-click="click(para)">Get</button>
+          </div>
+        </form>
+      </div>
+      <div class='map-wrapper'>
+        <heatmap></heatmap>
       </div>
     </div>
   </div>

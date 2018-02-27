@@ -614,3 +614,49 @@ body {
     }
   }
 }
+
+// View Cumulative Data
+.cdata {
+  .buttons-wrapper {
+    margin-top: 20px;
+    text-align: center;
+    .loading {
+      margin: 10px auto;
+    }
+    form {
+      max-width: 390px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin: 10px 10px;
+      
+      #parameter {
+        width: 200px;
+      }
+      .getPara {
+        width: 150px;
+        background-color: $red;
+        border-width: 0;
+        color: $wht;
+        font-size: 18px;
+        //line-height: 40px;
+        text-align: center;
+        margin: 0px auto;
+        &:hover {
+          cursor: pointer;
+          background-color: $tred;
+          color: $red;
+        }        
+        &[disabled] {
+          background-color: $dgry;
+          color: $wht;
+        }
+  
+      }
+    }
+  }
+  .map-wrapper {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

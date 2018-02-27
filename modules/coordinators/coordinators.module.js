@@ -94,7 +94,7 @@
           address: "CEPT University",
           city: "Ahmedabad",
           pincode: 380009,
-          devices: [ {id: "4434aa34awf2", location: "Living Room"} ],
+          devices: [ {id: "4434aa34awe2", location: "Living Room"} ],
           lastEditBy: "Researcher",
           lastEditOn: "15-02-2018 15:02:18"
         }];
@@ -152,7 +152,7 @@
               address: "CEPT University",
               city: "Ahmedabad",
               pincode: 380009,
-              devices: [ {id: "4434aa34awf2", location: "Living Room"} ],
+              devices: [ {id: "4434aa34awe2", location: "Living Room"} ],
               lastEditBy: "Admin",
               lastEditOn: "18-01-2017 23:01:01"
             };

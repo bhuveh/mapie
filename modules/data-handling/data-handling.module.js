@@ -23,14 +23,14 @@
     .controller('InstController', [ '$scope', 'DataService', function($scope, DataService) {
       $scope.data = [];
       
-      DataService.getInstantaneous("4434aa34awf2")
+      DataService.getInstantaneous("4434aa34awe2")
       .then(function (response) {
           console.log(response.data);
         });      
       
     }])
   
-  // Cumulative Data Controller.
+    // Cumulative Data Controller.
     .controller('CumuController', [ '$scope', 'DataService', function($scope, DataService) {
       $scope.data = [];
       
@@ -75,19 +75,32 @@
         templateUrl: './modules/data-handling/heatmap.view.html',
         controller: 'DataController',
         link: function (scope, element, attrs){
-          var data = scope.data;
-          var renderChart = function() {
+          var renderChart = function(para) {
+            var data = scope.data;
+            if (para=="Temperature") { para = "temp"; }
+            else if (para=="Humidity") { para = "hum"; };
+            
             var colorDomain = d3.extent(data, function(d){
-              return d.value;
+              return d["vals"][para];
             });
+            
+            var colorMin = d3.min(data, function(d){
+              return d["vals"][para];
+            });
+            var colorMax = d3.max(data, function(d){
+              return d["vals"][para];
+            });
+                    
             var colorScale = d3.scaleLinear()
-                .domain(colorDomain)
-                .range(["lightblue","blue"]);
+                .domain(d3.ticks(colorMin, colorMax, 9))
+                .range(["#494ad1", "#6074ea", "#7fb8ff", "#9cfcfc", "#b3f7a0", "#ffffa8", "#ffb663", "#ff6d6d", "#e2485c"]);
+            
+            d3.select(".heatmap").html("");
             
             var svg = d3.select(".heatmap")
               .append("svg")
-                .attr("width", 500)
-                .attr("height", 500);
+                .attr("width", 750)
+                .attr("height", 250);
 
             var rectangles = svg.selectAll("rect")
               .data(data)
@@ -96,16 +109,20 @@
 
             rectangles
                 .attr("x", function(d){
-                  return d.day * 50; 
+                  return d.day * 2; 
                 })
                 .attr("y", function(d){
-                  return d.week * 50; 
+                  return d.hour * 10; 
                 })
-                .attr("width", 50)
-                .attr("height", 50)
+                .attr("width", 2)
+                .attr("height", 10)
                 .style("fill", function(d){
-                  return colorScale(d.value); 
+                  return colorScale(d["vals"][para]); 
                 });    
+          };
+          
+          scope.click = function(para) {
+            renderChart(para);
           };
         }
       };
@@ -114,11 +131,16 @@
     // Controller.
     .controller('DataController', [ '$scope', 'DataService', function($scope, DataService) {
       $scope.data = [];
+      $scope.enabled = false;
+      
+      var tod = new Date();
+      console.log(tod.getDate() + "/" + tod.getMonth() + "/" + tod.getFullYear());
       
       var deviceObject = {
-        'start_date': '2018/01/31', 
-        'end_date': '2018/02/19',
-        'device_id': '40d63c07dd36'
+        'start_date': '2016/01/01', 
+        'end_date': '2016/12/31',
+        //'device_id': '40d63c07dd36'
+        'device_id': '4434aa34awe2'
       };
       
       var createDateArray = function(startDate, endDate) {
@@ -144,36 +166,37 @@
       
       var processData = function(dataObj) {
         var flatArr = [];
-        // For each date in the response data,
-        for (var date in dataObj) {
-          if (!dataObj.hasOwnProperty(date)) {
+        
+        // For each day in the required range.
+        for (var day = 0; day < dateArr.length; day++) {
+          // If the date is in the returned data,
+          if (!dataObj.hasOwnProperty(dateArr[day])) {
             continue;
           }
-          // If the date is in the requested dates,
-          if(dateArr.indexOf(date) > -1) {
-            // For each hour,
-            for( var i = 0; i < dataObj[date].length; i++) {
-              // Access each element in the array of objects - dataObj[date][i]
-              // Find the object's first key - 
-              for ( var hr in dataObj[date][i]) {
-                if (dataObj[date][i].hasOwnProperty(hr)) {
-                  // And get the hour and values.
-                  flatArr.push({
-                    date : date,
-                    hour : hr,
-                    vals : dataObj[date][i][hr]
-                  });
-                  break;
-                }
-              }              
-            }
-          }
+          // For each hour,
+          for( var i = 0; i < dataObj[dateArr[day]].length; i++) {
+            // Access each element in the array of objects - dataObj[date][i]
+            // Find the object's first key - 
+            for ( var hr in dataObj[dateArr[day]][i]) {
+              if (dataObj[dateArr[day]][i].hasOwnProperty(hr)) {
+                // And get the hour and values.
+                flatArr.push({
+                  day : day,
+                  date : dateArr[day],
+                  hour : hr,
+                  vals : dataObj[dateArr[day]][i][hr]
+                });
+                break;
+              }
+            }              
+          }          
         };
         $scope.data  = flatArr;
-      }      
+      };
       
-      DataService.get(deviceObject)
+      DataService.getCumulative(deviceObject)
       .then(function (response) {
+          $scope.enabled = true;
           //console.log(response.data);
           processData(response.data);
         });      

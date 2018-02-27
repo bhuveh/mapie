@@ -451,4 +451,35 @@ body {
     background-color: rgba(250, 64, 69, 0.1);
     color: #fa4045; }
 
+.cdata .buttons-wrapper {
+  margin-top: 20px;
+  text-align: center; }
+  .cdata .buttons-wrapper .loading {
+    margin: 10px auto; }
+  .cdata .buttons-wrapper form {
+    max-width: 390px;
+    margin: 0 auto; }
+  .cdata .buttons-wrapper .form-group {
+    margin: 10px 10px; }
+    .cdata .buttons-wrapper .form-group #parameter {
+      width: 200px; }
+    .cdata .buttons-wrapper .form-group .getPara {
+      width: 150px;
+      background-color: #fa4045;
+      border-width: 0;
+      color: #ffffff;
+      font-size: 18px;
+      text-align: center;
+      margin: 0px auto; }
+      .cdata .buttons-wrapper .form-group .getPara:hover {
+        cursor: pointer;
+        background-color: rgba(250, 64, 69, 0.1);
+        color: #fa4045; }
+      .cdata .buttons-wrapper .form-group .getPara[disabled] {
+        background-color: #b3b3b3;
+        color: #ffffff; }
+.cdata .map-wrapper {
+  margin-top: 20px;
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */
