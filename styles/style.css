@@ -322,12 +322,18 @@ body {
       min-width: 200px; }
 
 .vote {
-  height: calc(100% - 60px); }
+  height: calc(100% - 60px);
+  max-height: 640px; }
   .vote .slider {
     height: calc(100% - 90px);
     padding: 20px;
     margin: 20px auto;
     text-align: center; }
+  .vote .comfort-slider.rzslider {
+    margin-left: 150px; }
+    @media (max-width: 768px) {
+      .vote .comfort-slider.rzslider {
+        font-size: 0.9rem; } }
   .vote .comfort-slider.rzslider .rz-bar {
     margin-left: -22px;
     background: #d2d2d2;

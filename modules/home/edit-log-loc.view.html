@@ -8,6 +8,7 @@
       </div>
       <div class='logger-form'>
         <form name="logform" id="log-form" novalidate>
+          <label ng-hide="coordinator.devices.length">No devices found!</label>
           <div class="row" ng-repeat="device in coordinator.devices">
             <div class="col-sm">
               <div class="form-group">

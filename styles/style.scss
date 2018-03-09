@@ -459,6 +459,8 @@ body {
 // Survey, old slider.
 .vote {
   height: calc(100% - 60px);
+  max-height: 640px;
+  
   .slider {
     height: calc(100% - 90px);
     padding: 20px;
@@ -467,6 +469,12 @@ body {
   }
   
   //Slider
+  .comfort-slider.rzslider {
+    margin-left: 150px;
+    @media(max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
   .comfort-slider.rzslider .rz-bar {
     margin-left: -22px;
     background: $gry;

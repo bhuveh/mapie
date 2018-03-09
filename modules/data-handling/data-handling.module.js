@@ -10,16 +10,18 @@
         var service = {};
       
         service.getCumulative = function(deviceObject) {
-		  return $http.post(rootUrl + '/view/device/analysis/', deviceObject);
+		      return $http.post(rootUrl + '/view/device/analysis/', deviceObject);
         };
         service.getInstantaneous = function(id) {
-		      //return $http.get(rootUrl + '/view/device/logs/' + id);
+		      return $http.get(rootUrl + '/view/device/logs/' + id);
+          /*
           return $http({
             method: 'GET',
             url: rootUrl + '/view/device/logs/' + id,
             //params: 'limit=10, sort_by=created:desc',
             headers: {'Content-Type':'text/plain'}
           });
+          */
         };  
 		
         return service;
