@@ -127,6 +127,8 @@ body {
     padding: 20px 20px 1px 20px;
     border-radius: 5px;
     margin-bottom: 1rem; }
+    .cpage .filter-form-wrapper input {
+      margin: 6px 0; }
   .cpage .ctable-wrapper {
     background-color: #ffffff;
     padding: 20px;

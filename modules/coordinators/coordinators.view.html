@@ -11,20 +11,24 @@
   </div>
   <div class="container filter-form-wrapper">
     <form class="form">
-      <div class="form-group form-row">
-        <div class="col">
-          <input type="text" class="form-control" id="filterByName" ng-model="search.sname" placeholder="Filter By Site Name">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" id="filterByAddress" ng-model="search.address" placeholder="Filter By Address">
-        </div>
+      <div class="form-group">
+        <h4 class="table-title">Filters</h4>
       </div>
       <div class="form-group form-row">
-        <div class="col">
-          <input type="text" class="form-control" id="filterByCity" ng-model="search.city" placeholder="Filter By City">
+        <div class="col-lg col-sm-6">
+          <input type="text" class="form-control" id="filterByID" ng-model="search.cid" placeholder="ID">
         </div>
-        <div class="col">
-          <input type="number" maxlength="6" class="form-control" id="filterByPincode" ng-model="search.pincode" placeholder="Filter By Pincode">
+        <div class="col-lg col-sm-6">
+          <input type="text" class="form-control" id="filterByName" ng-model="search.sname" placeholder="Site Name">
+        </div>
+        <div class="col-lg col-sm-6">
+          <input type="text" class="form-control" id="filterByAddress" ng-model="search.address" placeholder="Address">
+        </div>
+        <div class="col-lg col-sm-3">
+          <input type="text" class="form-control" id="filterByCity" ng-model="search.city" placeholder="City">
+        </div>
+        <div class="col-lg col-sm-3">
+          <input type="text" maxlength="6" class="form-control" id="filterByPincode" ng-model="search.pincode" placeholder="Pincode">
         </div>
       </div>
     </form>
