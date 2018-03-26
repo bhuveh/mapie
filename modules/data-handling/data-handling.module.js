@@ -13,7 +13,7 @@
 		      return $http.post(rootUrl + '/view/device/analysis/', deviceObject);
         };
         service.getInstantaneous = function(id) {
-		      return $http.get(rootUrl + '/view/device/logs/' + id);
+		      return $http.get(rootUrl + '/view/device/insta/logs/' + id + '/');
           /*
           return $http({
             method: 'GET',
@@ -29,11 +29,94 @@
   
     // Instantaneous Data Controller.
     .controller('InstController', [ '$scope', 'DataService', function($scope, DataService) {
-      $scope.data = [];
+      $scope.slider = {
+        opt: {
+          floor: -400,
+          ceil: 400,
+          step: 1,
+          vertical: true,
+          hidePointerLabels: true,
+          hideLimitLabels: true,
+          readOnly: true,
+          showTicks: 100,
+          getLegend: function(value) {
+            if(value==-400)
+              return 'Very Cold';
+            if(value==-300)
+              return 'Cold';
+            if(value==-200)
+              return 'Cool';
+            if(value==-100)
+              return 'Slightly Cool';
+            if(value==0)
+              return 'Neutral';
+            if(value==100)
+              return 'Slightly Warm';
+            if(value==200)
+              return 'Warm';
+            if(value==300)
+              return 'Hot';
+            if(value==400)
+              return 'Very Hot';
+            return null;
+          },
+        }
+      };      
+      $scope.getColorT = function(val) {
+        if (val < 3.125) {
+          return '#494ad1';
+        } else if (val < 9.375) {
+          return '#6074ea';
+        } else if (val < 15.625) {
+          return '#7fb8ff';
+        } else if (val < 21.875) {
+          return '#9cfcfc';
+        } else if (val < 28.125) {
+          return '#b3f7a0';
+        } else if (val < 34.375) {
+          return '#ffffa8';
+        } else if (val < 40.625) {
+          return '#ffb663';
+        } else if (val < 46.875) {
+          return '#ff6d6d';
+        } else {
+          return '#e2485c';
+        }
+      };
+      $scope.getColorH = function(val) {
+        if (val < 6.25) {
+          return '#494ad1';
+        } else if (val < 18.750) {
+          return '#6074ea';
+        } else if (val < 31.250) {
+          return '#7fb8ff';
+        } else if (val < 43.750) {
+          return '#9cfcfc';
+        } else if (val < 56.250) {
+          return '#b3f7a0';
+        } else if (val < 68.750) {
+          return '#ffffa8';
+        } else if (val < 81.250) {
+          return '#ffb663';
+        } else if (val < 93.750) {
+          return '#ff6d6d';
+        } else {
+          return '#e2485c';
+        }
+      };
       
       DataService.getInstantaneous("4434aa34awe2")
       .then(function (response) {
-          console.log(response.data);
+          console.log(response.data.data[0]);
+          $scope.date = response.data.data[0]["IST_Date"];
+          $scope.time = response.data.data[0]["IST_time"];
+          $scope.hum = response.data.data[0]["hum"];
+          $scope.temp = response.data.data[0]["temp"];
+        
+          $scope.slider.val = ($scope.temp * 16) - 400;          
+
+          $('#temp-box').css('background-color', $scope.getColorT($scope.temp));
+          $('#hum-box').css('background-color', $scope.getColorH($scope.hum));
         });      
       
     }])

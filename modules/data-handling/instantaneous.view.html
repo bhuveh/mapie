@@ -4,7 +4,30 @@
   <div class='main' ng-hide='sidebar.hide'>
     <div class='idata cbox container'>
       <div class='title'>
-        Instantaneous
+        Instantaneous Data
+      </div>
+      <div class='row justify-content-center'>
+        <div class='col-auto'>
+          <div class='inst-dt'>
+            <span class='dt-title'>Date </span> {{date}}<br><span class='dt-title'>Time </span> {{time}}
+          </div>
+          <div class='met' id='temp-box'>
+            <div class='m-title'>Temperature</div>
+            <div class='mnum'>{{temp}}&deg;C</div>
+          </div>
+          <div class='met' id='hum-box'>
+            <div class='m-title'>Humidity</div>
+            <div class='mnum'>{{hum}}%</div>
+          </div>
+        </div>
+        <div class='col-auto'>
+          <div class='slider'>
+          <rzslider id='disp-pointer'
+                class='inst-slider'
+                rz-slider-model='slider.val'
+                rz-slider-options='slider.opt'></rzslider>
+          </div>
+        </div>
       </div>
     </div>
   </div>
