@@ -237,7 +237,8 @@ body {
   flex-flow: row nowrap;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
-  align-items: stretch; }
+  align-items: stretch;
+  height: 100%; }
   .wrapper sidebar {
     overflow: hidden;
     width: 250px;
@@ -245,7 +246,7 @@ body {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     background-color: #d2d2d2;
-    height: 100vh;
+    height: 100%;
     padding-top: 60px;
     z-index: 9;
     -webkit-transition: all 0.5s ease-out;
@@ -497,11 +498,15 @@ body {
     background-color: #e4e4e4;
     padding: 20px;
     min-width: 300px;
-    margin: 20px 0px; }
+    margin: 20px 40px 20px 0px; }
     .idata .inst-dt .dt-title {
       font-weight: 700;
       color: #5c5c5c;
       margin-right: 10px; }
+    @media (max-width: 835px) {
+      .idata .inst-dt {
+        min-width: auto;
+        margin: 20px 0px; } }
     @media (max-width: 360px) {
       .idata .inst-dt {
         min-width: auto;
@@ -511,7 +516,11 @@ body {
     border: solid 1px #d2d2d2;
     padding: 20px;
     min-width: 300px;
-    margin-bottom: 20px; }
+    margin: 20px 40px 20px 0px; }
+    @media (max-width: 835px) {
+      .idata .met {
+        min-width: auto;
+        margin: 20px 0px 20px 0px; } }
     @media (max-width: 360px) {
       .idata .met {
         min-width: auto;

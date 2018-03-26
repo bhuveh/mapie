@@ -338,6 +338,8 @@ body {
       -ms-flex-align: stretch;
           align-items: stretch;
   
+  height: 100%;
+  
   sidebar {
     overflow: hidden;
     width: 250px;
@@ -345,7 +347,7 @@ body {
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     background-color: $gry;
-    height: 100vh;
+    height: 100%;
     padding-top: 60px;
     z-index: 9;
     -webkit-transition: all 0.5s ease-out;
@@ -682,11 +684,16 @@ body {
     background-color: $lgry;
     padding: 20px;
     min-width: 300px;
-    margin: 20px 0px;
+    margin: 20px 40px 20px 0px;
     .dt-title {
       font-weight: 700;
       color: $blk;
       margin-right: 10px;
+    }
+    
+    @media(max-width: 835px) {
+      min-width: auto;
+      margin: 20px 0px;
     }
     
     @media(max-width: 360px) {
@@ -699,7 +706,12 @@ body {
     border: solid 1px $gry;
     padding: 20px;
     min-width: 300px;
-    margin-bottom: 20px;
+    margin: 20px 40px 20px 0px;
+    
+    @media(max-width: 835px) {
+      min-width: auto;
+      margin: 20px 0px 20px 0px;
+    }
     
     @media(max-width: 360px) {
       min-width: auto;

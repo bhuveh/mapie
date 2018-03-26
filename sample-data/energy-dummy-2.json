@@ -1,0 +1,50 @@
+[
+  {
+    "month": "Jan",
+    "energy": 110
+  },
+  {
+    "month": "Feb",
+    "energy": 130
+  },
+  {
+    "month": "Mar",
+    "energy": 160
+  },
+  {
+    "month": "Apr",
+    "energy": 150
+  },
+  {
+    "month": "May",
+    "energy": 210
+  },
+  {
+    "month": "Jun",
+    "energy": 310
+  },
+  {
+    "month": "Jul",
+    "energy": 260
+  },
+  {
+    "month": "Aug",
+    "energy": 280
+  },
+  {
+    "month": "Sep",
+    "energy": 240
+  },
+  {
+    "month": "Oct",
+    "energy": 190
+  },
+  {
+    "month": "Nov",
+    "energy": 130
+  },
+  {
+    "month": "Dec",
+    "energy": 130
+  }
+]

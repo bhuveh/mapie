@@ -14,15 +14,15 @@
         };
         service.getInstantaneous = function(id) {
 		      return $http.get(rootUrl + '/view/device/insta/logs/' + id + '/');
-          /*
-          return $http({
-            method: 'GET',
-            url: rootUrl + '/view/device/logs/' + id,
-            //params: 'limit=10, sort_by=created:desc',
-            headers: {'Content-Type':'text/plain'}
-          });
-          */
-        };  
+        };
+      
+        service.getEnergy1 = function() {
+		      return $http.get('./sample-data/energy-dummy.json');
+        };
+      
+        service.getEnergy2 = function() {
+		      return $http.get('./sample-data/energy-dummy-2.json');
+        };
 		
         return service;
 	}])
@@ -159,7 +159,7 @@
       
     }])  
   
-    // Directive.
+    // Heatmap Directive.
     .directive('heatmap', function() {
       return {
         restrict: 'E',
@@ -190,10 +190,12 @@
             
             var svg = d3.select(".heatmap")
               .append("svg")
-                .attr("width", 750)
-                .attr("height", 250);
+                .attr("width", 780)
+                .attr("height", 300);
+            
+            var g = svg.append("g").attr("transform", "translate(" + 30 + "," + 30 + ")");
 
-            var rectangles = svg.selectAll("rect")
+            var rectangles = g.selectAll("rect")
               .data(data)
               .enter()
               .append("rect"); 
@@ -209,7 +211,30 @@
                 .attr("height", 10)
                 .style("fill", function(d){
                   return colorScale(d["vals"][para]); 
-                });    
+                });
+            
+            var y = d3.scaleLinear()
+              .domain([24,0])
+              .range([0, 240]);
+            
+            var yaxis = d3.axisLeft()
+              .scale(y);
+            
+            svg.append("g")
+              .attr("transform", "translate(" + 30 + "," + 30 + ")")
+              .call(yaxis);
+            
+            var x = d3.scaleLinear()
+              .domain([0,365])
+              .range([0, 732]);
+            
+            var xaxis = d3.axisBottom()
+              .scale(x);
+            
+            svg.append("g")
+              .attr("transform", "translate(" + 30 + "," + 270 + ")")
+              .call(xaxis);            
+              
           };
           
           scope.click = function(para) {
@@ -219,7 +244,7 @@
       };
     })
   
-    // Controller.
+    // Data Handling Controller.
     .controller('DataController', [ '$scope', 'DataService', function($scope, DataService) {
       $scope.data = [];
       $scope.enabled = false;
@@ -292,5 +317,8 @@
           processData(response.data);
         });      
       
-    }])    
+    }])
+  
+    // Energy History Controller.
+    
 })();
