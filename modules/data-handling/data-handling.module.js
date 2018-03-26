@@ -224,8 +224,8 @@
               .attr("transform", "translate(" + 30 + "," + 30 + ")")
               .call(yaxis);
             
-            var x = d3.scaleLinear()
-              .domain([0,365])
+            var x = d3.scaleTime()
+              .domain([new Date("2016-01-01"), new Date("2016-12-31")])
               .range([0, 732]);
             
             var xaxis = d3.axisBottom()
