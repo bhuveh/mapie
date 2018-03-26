@@ -190,10 +190,10 @@
             
             var svg = d3.select(".heatmap")
               .append("svg")
-                .attr("width", 780)
+                .attr("width", 792)
                 .attr("height", 300);
             
-            var g = svg.append("g").attr("transform", "translate(" + 30 + "," + 30 + ")");
+            var g = svg.append("g").attr("transform", "translate(" + 50 + "," + 10 + ")");
 
             var rectangles = g.selectAll("rect")
               .data(data)
@@ -221,7 +221,7 @@
               .scale(y);
             
             svg.append("g")
-              .attr("transform", "translate(" + 30 + "," + 30 + ")")
+              .attr("transform", "translate(" + 50 + "," + 10 + ")")
               .call(yaxis);
             
             var x = d3.scaleTime()
@@ -234,9 +234,21 @@
               .tickFormat(d3.timeFormat("%b"));
             
             svg.append("g")
-              .attr("transform", "translate(" + 30 + "," + 270 + ")")
-              .call(xaxis);            
-              
+              .attr("transform", "translate(" + 50 + "," + 250 + ")")
+              .call(xaxis);
+            
+            svg.append("text")             
+                .attr("transform","translate(" + (742) + " ," + 280 + ")")
+                .style("text-anchor", "middle")
+                .text("Month");
+            
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 5)
+                .attr("x", -50)
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Hour of Day");      
           };
           
           scope.click = function(para) {

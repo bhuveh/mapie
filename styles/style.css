@@ -490,6 +490,12 @@ body {
 .cdata .map-wrapper {
   margin-top: 20px;
   text-align: center; }
+.cdata svg text {
+  fill: #5c5c5c; }
+.cdata svg > text {
+  font-size: 12px; }
+.cdata svg line {
+  stroke: #5c5c5c; }
 
 .idata {
   height: 100%; }

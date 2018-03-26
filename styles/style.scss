@@ -674,6 +674,18 @@ body {
     margin-top: 20px;
     text-align: center;
   }
+  
+  svg text {
+    fill: $blk;
+  }
+  
+  svg > text {
+    font-size: 12px;
+  }
+  
+  svg line {
+    stroke: $blk;
+  }
 }
 
 // View Instantaneous Data
