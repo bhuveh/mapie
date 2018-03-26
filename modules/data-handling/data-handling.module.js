@@ -226,10 +226,12 @@
             
             var x = d3.scaleTime()
               .domain([new Date("2016-01-01"), new Date("2016-12-31")])
-              .range([0, 732]);
+              .range([0, 732])
+              .nice();
             
             var xaxis = d3.axisBottom()
-              .scale(x);
+              .scale(x)
+              .tickFormat(d3.timeFormat("%b"));
             
             svg.append("g")
               .attr("transform", "translate(" + 30 + "," + 270 + ")")
