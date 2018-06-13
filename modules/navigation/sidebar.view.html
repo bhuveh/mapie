@@ -1,6 +1,6 @@
 <div>
   <div class='user-id'>
-    Hello {{user.firstname || 'Anonymous' }}!
+    Hello {{user.first_name || 'Anonymous' }}!
     <br>
     Coordinator ID: #{{coordinator.cid}}
   </div>
@@ -26,7 +26,7 @@
           <div>Edit User Details</div>
         </a>
       </div>
-      <div class="sub-menu-item menu-item" ng-show="user.usertype == 1">
+      <div class="sub-menu-item menu-item" ng-show="user.coo_id">
         <a href="#!/edit-logg" ng-click="setSidebarButton(1)">
           <div>Edit Logger Locations</div>
         </a>
@@ -64,17 +64,17 @@
         </a>
       </div>
     </div>
-    <div class="menu-item" ng-show="user.usertype == 1">
+    <div class="menu-item" ng-show="user.coo_id">
       <a href="#!/data-acqn" ng-click="setSidebarButton(0)">
         <div>Data Acquisition</div>
       </a>
     </div>
-    <div class="menu-item" ng-show="user.usertype == 1">
+    <div class="menu-item" ng-show="user.coo_id">
       <a href="#!/data-expt" ng-click="setSidebarButton(0)">
         <div>Data Export</div>
       </a>
     </div>
-    <div class="menu-item" ng-show="user.usertype == 1">
+    <div class="menu-item" ng-show="user.coo_id">
       <a href="#!/data-read" ng-click="setSidebarButton(0)">
         <div>Data Reading</div>
       </a>

@@ -12,7 +12,7 @@
         
         service.Login = function (email, password, callback) {          
           /* Dummy authentication for testing, uses $timeout to simulate api call
-          ----------------------------------------------*/
+          ----------------------------------------------
           $timeout(function(){
             var response;
             userService.GetByEmail(email)
@@ -25,16 +25,18 @@
                 callback(response);
               });
           }, 1000 );
+          */
           /* Use this for real authentication
            ----------------------------------------------*/
-          //$http.post('/api/authenticate', { email: email, password: password })
-          //    .success(function (response) {
-          //        callback(response);
-          //    });
+          $http.post('https://pirhoalpha.com/api/cept/login/', { email: email, password: password })
+              .then(function (response) {
+                //console.log(response);
+                callback(response);
+              });
         };
 
-        service.SetCredentials = function (user, password) {
-          var authdata = base64.encode(user.id + ':' + user.usertype + ':' + password);
+        service.SetCredentials = function (authdata, user) {
+          //var authdata = base64.encode(user.id + ':' + user.usertype + ':' + password);
           
           $rootScope.globals.authdata = authdata;
           $rootScope.globals.currentUser = user;
@@ -54,6 +56,7 @@
             $http.defaults.headers.common.Authorization = 'Basic ';
         };
         
+        /*
         // Base64 encoding service used by AuthenticationService
         var base64 = {
           keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
@@ -133,6 +136,7 @@
             return output;
           }
         };
+        */
         
         return service;
     }])
@@ -182,7 +186,7 @@
     */
   
     // Fake user service with local storage.
-    .factory('userService', [ '$timeout', '$filter', '$q', function ($timeout, $filter, $q) {
+    .factory('userService', [ '$timeout', '$filter', '$q', '$http', function ($timeout, $filter, $q, $http) {
       var service = {};
       
       service.GetAll = GetAll;
@@ -215,7 +219,12 @@
         deferred.resolve(user);
         return deferred.promise;
       };
+      
+      function Create(user) {
+        return $http.post('https://pirhoalpha.com/api/cept/register/', user);
+      }
  
+      /*
       function Create(user) {
         var deferred = $q.defer();
         // Simulate api call with $timeout
@@ -238,6 +247,7 @@
         }, 1000);
         return deferred.promise;
       };
+      */
  
       function Update(user) {
         var deferred = $q.defer();
@@ -301,18 +311,20 @@
       function login() {
         $scope.dataLoading = true;
         authenticationService.Login($scope.user.email, $scope.user.password, function(response) {
-          if(response.success) {
+          if(response.data.status) {            
+            authenticationService.SetCredentials(response.data.auth_token, response.data.user);
+            coordinatorService.SetCurrentCoordinator(response.data.user.coo_id);
             
-            authenticationService.SetCredentials(response.user, $scope.user.password);
-            coordinatorService.SetCurrentCoordinator(response.user.coId);
-            
-            if(response.user.usertype) {
-              $location.path('/coordinators');
-            } else {
+            if(response.data.user.coo_id) {
+              //console.log(response.data);
+              //console.log('Going to home.');
               $location.path('/home');
+            } else {
+              //console.log('Going to coordinators.');
+              $location.path('/coordinators');
             };
           } else {
-            $scope.error = response.message;
+            $scope.error = response.data.error;
             $scope.dataLoading = false;
           }
         });
@@ -334,19 +346,26 @@
       
       $scope.register = function(){
         $scope.dataLoading = true;
-        $scope.regUser.usertype = true;
+        //$scope.regUser.usertype = true;
         
+        /*
         if ($scope.regUser.usertype) {
           $scope.regUser.usertype = 1;
         } else {
           $scope.regUser.usertype = 0;
         }
+        */
+        
         userService.Create($scope.regUser)
           .then(function (response) {
-            if (response.success) {
+            if (response.data.status) {
               $scope.msg = 'Registration successful!';
+              //console.log(response);
               $location.path('/login');
             } else {
+              $scope.msg = 'Registration failed! User already exists!';
+              //console.log(response);
+              //console.log('Registration failed!');
               $scope.dataLoading = false;
             }
           });

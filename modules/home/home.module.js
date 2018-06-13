@@ -89,8 +89,8 @@
         address : $scope.user.address,
         city : $scope.user.city,
         pincode : $scope.user.pincode,
-        usertype : $scope.user.usertype,
-        cpassword : $scope.user.cpassword,
+        //usertype : $scope.user.usertype,
+        confirm_password : $scope.user.confirm_password,
         password : $scope.user.password,
       }
       $scope.saveUser = function() {

@@ -37,14 +37,14 @@
     </div>
     <div class="form-group form-row">
       <div class="col-sm">
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password*" ng-model="regUser.password" required confirm-password="{{regUser.cpassword}}">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password*" ng-model="regUser.password" required confirm-password="{{regUser.confirm_password}}">
         <small ng-show="regform.password.$touched && regform.password.$error.required">Password is required!</small>
         <small ng-show="regform.password.$dirty && regform.password.$error.confirmPassword">Password mismatch!</small>
       </div>
       <div class="col-sm">
-        <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password*" ng-model="regUser.cpassword" required confirm-password="{{regUser.password}}">
-        <small ng-show="regform.cpassword.$touched && regform.cpassword.$error.required">Confirm password is required!</small>
-        <small ng-show="regform.cpassword.$dirty && regform.cpassword.$error.confirmPassword">Password mismatch!</small>
+        <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password*" ng-model="regUser.confirm_password" required confirm-password="{{regUser.password}}">
+        <small ng-show="regform.confirm_password.$touched && regform.confirm_password.$error.required">Confirm password is required!</small>
+        <small ng-show="regform.confirm_password.$dirty && regform.confirm_password.$error.confirmPassword">Password mismatch!</small>
       </div>
     </div>
     <div class="form-group">

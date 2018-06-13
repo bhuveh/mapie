@@ -91,7 +91,7 @@
             };
             // Redirect from researcher pages if not researcher.
             var researcherPage = $.inArray($location.path(), ['/coordinators', '/edit-logg', '/data-acqn', '/data-expt', '/data-read']) !== -1;
-            if (researcherPage && !$rootScope.globals.currentUser.usertype) {
+            if (researcherPage && $rootScope.globals.currentUser.coo_id) {
                 $location.path('/home');
             };
         });
